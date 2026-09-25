@@ -324,6 +324,54 @@ footer{padding:38px 0 55px;border-top:1px solid #312a2e;color:#8e8780}
   .windmill{right:15%;height:170px}.road{left:60%;width:170px}.house{width:180px;height:145px}
   .center-note{width:92%;bottom:15px}.evidence{grid-template-columns:1fr}.faq{grid-template-columns:1fr}
 }
+
+.hero-brand{
+  position:absolute;left:50%;top:20%;z-index:15;transform:translateX(-50%);
+  width:min(720px,72%);text-align:center;
+}
+.hero-brand .rs-top{
+  font:900 clamp(4.5rem,8vw,8rem)/.8 Georgia,serif;
+  text-transform:uppercase;color:#f3eadc;letter-spacing:-.055em;
+  text-shadow:0 6px 0 rgba(0,0,0,.35),0 0 30px rgba(255,255,255,.08);
+}
+.hero-brand .rs-bottom{
+  font:900 italic clamp(4rem,7.6vw,7.4rem)/.86 "Trebuchet MS",Arial,sans-serif;
+  text-transform:uppercase;color:var(--green);
+  text-shadow:0 0 22px rgba(92,240,107,.35),0 5px 0 rgba(0,0,0,.34);
+}
+.hero-script{
+  margin-top:14px;
+  font:700 clamp(1.7rem,3vw,3.1rem)/1.1 "Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  color:#f3ece6;
+  transform:rotate(-2deg);
+  text-shadow:0 3px 3px #000;
+}
+.hero-copy{
+  left:50%;right:auto;top:54%;width:min(700px,72%);
+  transform:translateX(-50%);text-align:center;font-size:1.02rem;
+}
+.coming-soon-card{
+  left:5.5%;top:7%;font-size:clamp(1.55rem,3vw,3rem);opacity:.98;
+}
+.coming-soon-stamp{
+  position:absolute;left:4%;top:82%;display:block;
+  padding:7px 12px;border:4px solid #d5332f;color:#ff4b45;background:rgba(38,5,6,.82);
+  font:900 clamp(1rem,1.7vw,1.45rem)/1 "Courier New",monospace;
+  letter-spacing:.08em;transform:rotate(-6deg);box-shadow:0 0 18px rgba(255,54,54,.18);
+}
+@media(max-width:980px){
+  .hero-brand{top:17%;width:84%}
+  .hero-copy{top:48%;width:80%}
+  .coming-soon-card{top:6%;left:4%}
+}
+@media(max-width:620px){
+  .hero-brand{top:16%;width:92%}
+  .hero-brand .rs-top{font-size:3.4rem}
+  .hero-brand .rs-bottom{font-size:3.1rem}
+  .hero-script{font-size:1.45rem}
+  .hero-copy{top:43%;width:88%}
+  .coming-soon-card{display:none}
+}
 </style>
 </head>
 <body>
@@ -352,23 +400,24 @@ footer{padding:38px 0 55px;border-top:1px solid #312a2e;color:#8e8780}
       </svg>
     </div>
 
-    <div class="ps-sign"><small>FIELD KIT // SENSOR READY</small>Paranormal<br>Suitcase</div>
-    <div class="rs-sign"><div class="rs-top">Roadside</div><div class="rs-bottom">Strange</div></div>
-
-    <div class="scene-copy ps-copy">
-      <strong>For the moment someone says “did you hear that?”</strong><br>
-      Record, measure, review and keep the investigation together with tools built around hardware your phone actually has.
-      <div class="tags">
-        <span class="tag">EVP Recorder</span><span class="tag">K2 / EMF</span><span class="tag">Spirit Box</span><span class="tag">SLS Camera</span><span class="tag">Anomaly Compass</span><span class="tag">Journal</span>
-      </div>
+    <div class="hero-brand">
+      <div class="rs-top">Roadside</div>
+      <div class="rs-bottom">Strange</div>
+      <div class="hero-script">Take the Weird Way Home.</div>
+    </div>
+    <div class="ps-sign coming-soon-card">
+      <small>FIELD KIT // SENSOR READY</small>
+      Paranormal<br>Suitcase
+      <span class="coming-soon-stamp">COMING SOON</span>
     </div>
 
-    <div class="scene-copy rs-copy">
-      <strong>For the person who sees a weird road sign and says “turn here.”</strong><br>
-      Find haunted places, cryptid reports, UAP cases, strange history and the roadside stories ordinary maps completely ignore.
+    <div class="scene-copy rs-copy hero-copy">
+      Discover hauntings, cryptids, UAP sightings and weird places on the road.
+      Real stories. Unforgettable stops. A stranger side of the map is waiting.
       <div class="tags">
         <span class="tag">Hauntings</span><span class="tag">Cryptids</span><span class="tag">UAP</span><span class="tag">Weird History</span><span class="tag">Road Trips</span><span class="tag">Strange Drive</span>
       </div>
+    </div>
     </div>
 
     <div class="road" aria-hidden="true"></div><div class="hill" aria-hidden="true"></div>
@@ -419,8 +468,8 @@ footer{padding:38px 0 55px;border-top:1px solid #312a2e;color:#8e8780}
   </div>
 
   <div class="hero-actions">
-    <a class="sign-btn green" href="#roadside">Take the weird way home →</a>
-    <a class="sign-btn purple" href="#suitcase">Open the suitcase →</a>
+    <a class="sign-btn green" href="roadside-strange.html">Explore the Map →</a>
+    <a class="sign-btn purple" href="roadside-strange.html">Download the App →</a>
   </div>
 
   <div class="marquee" aria-hidden="true"><div>
