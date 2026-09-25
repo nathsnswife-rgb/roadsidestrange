@@ -129,6 +129,25 @@ a{color:inherit}
 }
 .btn.rs{background:linear-gradient(135deg,#204d3e,#163c2f);border-color:#377f66;color:#cffff0}
 .btn.ps{background:linear-gradient(135deg,#432359,#2c173b);border-color:#704591;color:#ead4ff}
+.btn{transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}.btn:hover{transform:translateY(-2px) rotate(-.4deg);filter:brightness(1.08);box-shadow:0 9px 24px rgba(0,0,0,.24)}
+.ticker{margin:4px 0 14px;border-top:1px solid #342f35;border-bottom:1px solid #342f35;overflow:hidden;background:#0d0d10;transform:rotate(-.25deg)}
+.ticker-track{white-space:nowrap;padding:10px 0;font-weight:950;letter-spacing:.1em;font-size:.78rem;text-transform:uppercase;color:#b9b0a8}
+.ticker-track span{padding:0 22px}.ticker-track .weird{color:var(--green)}.ticker-track .investigate{color:var(--purple)}
+.scribble{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-weight:800;letter-spacing:.02em;transform:rotate(-2deg);display:inline-block}
+.choice-board{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin:34px auto 0;max-width:940px}
+.choice{position:relative;border:1px solid #3d3840;border-radius:18px;padding:23px;background:#101014;text-decoration:none;transition:.18s ease;overflow:hidden}
+.choice:hover{transform:translateY(-3px) rotate(-.35deg)}
+.choice.ps-choice{border-color:#573b6d;background:linear-gradient(145deg,#17101d,#100e14)}
+.choice.rs-choice{border-color:#2d644e;background:linear-gradient(145deg,#0e1915,#0e1211)}
+.choice small{display:block;text-transform:uppercase;letter-spacing:.16em;font-weight:900;color:#8f8780;margin-bottom:6px}
+.choice strong{font-size:1.25rem}.choice p{margin:7px 0 0!important;font-size:.93rem!important;color:#aca39b!important}
+.choice-or{align-self:center;font-family:Georgia,serif;font-style:italic;color:#746d68;font-size:1.1rem}
+.sticker{position:absolute;z-index:3;padding:7px 10px;border:1px solid currentColor;border-radius:5px;background:#111;font-size:.69rem;font-weight:950;letter-spacing:.11em;text-transform:uppercase;box-shadow:0 5px 13px rgba(0,0,0,.35)}
+.suitcase .sticker{right:24px;top:24px;color:#d49cff;transform:rotate(4deg)}
+.roadside .sticker{right:24px;top:24px;color:#7aef79;transform:rotate(3deg)}
+.field-note{margin-top:20px;padding:13px 15px;border-left:3px solid var(--gold);background:rgba(231,176,93,.055);color:#bdb3a9;font-size:.88rem;line-height:1.55;position:relative;z-index:2}
+.field-note b{color:#e7c88b}
+.card{transition:transform .18s ease,border-color .18s ease,background .18s ease}.card:hover{transform:translateY(-3px) rotate(-.25deg);background:rgba(255,255,255,.035)}
 .section{padding:72px 0}
 .section-head{max-width:790px}
 .overline{text-transform:uppercase;letter-spacing:.17em;font-size:.75rem;font-weight:950;color:#9f968f}
@@ -203,9 +222,10 @@ footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#9
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-grid">
     <article class="brand-panel suitcase">
+      <div class="sticker">Pack light. Investigate weird.</div>
       <div class="kicker">Investigate the unknown</div>
       <div class="sign"><h1>Paranormal<br>Suitcase</h1></div>
-      <p class="copy">A paranormal investigation toolkit built around the phone already in your hand. Record, measure, review and organize a session with tools that explain what they actually do.</p>
+      <p class="copy">Your phone is already coming with you. Paranormal Suitcase turns it into a practical field kit for recording, measuring, reviewing and keeping track of the moments that make everyone in the room go, “...did you hear that?”</p>
       <div class="features" aria-label="Paranormal Suitcase features">
         <span class="pill">EVP Recorder</span><span class="pill">K2 / EMF</span><span class="pill">Spirit Box</span><span class="pill">SLS Camera</span><span class="pill">Anomaly Compass</span><span class="pill">Journal</span>
       </div>
@@ -213,9 +233,10 @@ footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#9
     </article>
 
     <article class="brand-panel roadside">
+      <div class="sticker">Normal routes are overrated.</div>
       <div class="kicker">Find the weird</div>
       <div class="sign"><h1>Roadside</h1><h2>Strange</h2></div>
-      <p class="copy">Discover haunted places, cryptid reports, UAP cases, strange history and weird roadside stories near you, then turn them into real-world stops and stranger road trips.</p>
+      <p class="copy">For the person who sees a weird road sign and immediately says, “turn here.” Find hauntings, cryptids, UAP cases, strange history and the roadside stories most maps completely ignore.</p>
       <div class="features" aria-label="Roadside Strange features">
         <span class="pill">Haunted Places</span><span class="pill">Cryptids</span><span class="pill">UAP Cases</span><span class="pill">Weird History</span><span class="pill">Road Trips</span><span class="pill">Strange Drive</span>
       </div>
@@ -223,13 +244,15 @@ footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#9
     </article>
   </div>
 
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Ghosts</span> · <span>Cryptids</span> · <span class="weird">Take the weird way home</span> · <span>UAPs</span> · <span>Strange history</span> · <span class="investigate">Bring the suitcase</span> · <span>Road trips</span> · <span>EVPs</span> · <span>Things that go bump in the night</span></div></div>
   <div class="hero-message">
     <div class="eyebrow">Two apps · one strange world</div>
-    <h2 id="hero-title"><span class="g">Explore it.</span> <span class="p">Investigate it.</span></h2>
-    <p>Roadside Strange helps you find unusual places and stories worth exploring. Paranormal Suitcase gives you a field toolkit when you get there. Built for curious travelers, ghost hunters, paranormal investigators and anyone who prefers the weird way home.</p>
-    <div class="cta-row">
-      <a class="btn rs" href="#roadside">Explore Roadside Strange</a>
-      <a class="btn ps" href="#suitcase">Open Paranormal Suitcase</a>
+    <h2 id="hero-title">Find something <span class="g scribble">weird.</span><br>Then go <span class="p scribble">see for yourself.</span></h2>
+    <p>Roadside Strange finds the places worth pulling over for. Paranormal Suitcase comes along when curiosity turns into an investigation. No fake science. No boring road trips. Just a very large world full of odd little stories.</p>
+    <div class="choice-board">
+      <a class="choice rs-choice" href="#roadside"><small>I feel like exploring</small><strong>Show me something strange →</strong><p>Ghosts, cryptids, UAPs, hidden history and road trips.</p></a>
+      <div class="choice-or">or</div>
+      <a class="choice ps-choice" href="#suitcase"><small>I brought equipment</small><strong>Let’s investigate it →</strong><p>Real phone tools, recordings and field notes.</p></a>
     </div>
   </div>
 </section>
@@ -237,8 +260,8 @@ footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#9
 <section class="section" id="roadside">
   <div class="section-head">
     <div class="overline">Roadside Strange</div>
-    <h2>A map for the places normal road-trip apps miss.</h2>
-    <p class="intro">Search for haunted places near you, browse cryptid sightings and UAP cases, uncover strange local history, get directions to appropriate public locations and build a paranormal road trip around the stories that interest you.</p>
+    <h2>The map your sensible friend would never make.</h2>
+    <p class="intro">Search for haunted places near you, cryptid sightings, UAP cases and strange local history, then turn the ones that make you say “wait, that’s near us?” into an actual road trip.</p>
   </div>
   <div class="grid6">
     <div class="card rs-card"><div class="icon">👻</div><h3>Haunted places & ghost stories</h3><p>Explore reported hauntings and the documented stories connected with real locations.</p></div>
@@ -248,16 +271,17 @@ footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#9
     <div class="card rs-card"><div class="icon">🎧</div><h3>Strange Drive</h3><p>Hear about unusual places around you while you travel so the journey becomes part of the discovery.</p></div>
     <div class="card rs-card"><div class="icon">📍</div><h3>Public-access focused</h3><p>Cases are aimed toward appropriate public destinations and access notes rather than sending people onto private property.</p></div>
   </div>
+  <div class="field-note"><b>Road trip rule #1:</b> if there’s a normal way home and a weird way home, you already know which one we’re taking.</div>
   <div class="cta-row" style="justify-content:flex-start">
-    <a class="btn rs" href="roadside-strange.html">Roadside Strange app page</a>
+    <a class="btn rs" href="roadside-strange.html">Take the weird way home →</a>
   </div>
 </section>
 
 <section class="section" id="suitcase">
   <div class="section-head">
     <div class="overline">Paranormal Suitcase</div>
-    <h2>Your paranormal investigation kit, without imaginary hardware.</h2>
-    <p class="intro">Paranormal Suitcase uses supported phone hardware and software to help you document an investigation. The app explains what each tool measures, what it cannot prove, and what may cause false positives.</p>
+    <h2>Ghost hunting tools without pretending your phone is magic.</h2>
+    <p class="intro">Paranormal Suitcase uses the hardware your phone genuinely has. It helps you record and compare what happens during an investigation, while being very clear about what a reading means and what it absolutely does not prove.</p>
   </div>
   <div class="grid6">
     <div class="card ps-card"><div class="icon">🎙️</div><h3>EVP Recorder</h3><p>Capture microphone audio, mark moments during a session and review recordings with playback controls.</p></div>
@@ -267,23 +291,25 @@ footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#9
     <div class="card ps-card"><div class="icon">🧭</div><h3>Anomaly Compass</h3><p>Record magnetic-field changes by direction during a deliberate sweep for repeatable comparisons.</p></div>
     <div class="card ps-card"><div class="icon">📚</div><h3>Investigation Journal</h3><p>Keep recordings, evidence, source logs and session markers organized for later review.</p></div>
   </div>
+  <div class="field-note"><b>Our rule:</b> weird is welcome. Made-up hardware isn’t.</div>
   <div class="cta-row" style="justify-content:flex-start">
-    <a class="btn ps" href="paranormal-suitcase.html">Paranormal Suitcase app page</a>
+    <a class="btn ps" href="paranormal-suitcase.html">Open the suitcase →</a>
   </div>
 </section>
 
 <section class="section" id="discover">
   <div class="bridge">
-    <div class="overline">Explore · Investigate · Discover</div>
-    <h2 style="margin:9px 0 10px">Find the story. Go there. Bring the toolkit.</h2>
-    <p><strong>Roadside Strange</strong> is for discovering the strange world around you. <strong>Paranormal Suitcase</strong> is for documenting what happens when you decide to investigate it. They work as separate apps, but they belong to the same world.</p>
+    <div class="overline">The whole point</div>
+    <h2 style="margin:9px 0 10px">“What’s around here?” should never have a boring answer.</h2>
+    <p><strong>Roadside Strange</strong> gets you off the obvious route. <strong>Paranormal Suitcase</strong> gives you something useful to do when you arrive. Use either one on its own, or make a questionable evening of it and use both.</p>
   </div>
 
   <div class="search-block">
-    <h3>What people are looking for</h3>
-    <p>This preview is written around real discovery language instead of a hidden pile of repeated keywords. These phrases will also become dedicated useful pages so Google has something genuinely relevant to index.</p>
-    <div class="keyword-cloud" aria-label="Search topics">
-      <span>haunted places near me</span><span>paranormal map</span><span>ghost map</span><span>cryptid map</span><span>cryptid sightings</span><span>UAP map</span><span>haunted road trip</span><span>paranormal road trip</span><span>weird roadside attractions</span><span>strange places near me</span><span>ghost hunting tools</span><span>paranormal investigation app</span><span>EVP recorder</span><span>EMF detector</span><span>spirit box app</span><span>SLS camera</span>
+    <div class="overline">Pick your rabbit hole</div>
+    <h3>Ghosts? Cryptids? UFOs? Weird history? Yes.</h3>
+    <p>Start with whatever made you curious. The site will grow into dedicated guides for haunted places, paranormal road trips, cryptid sightings, UAP cases, roadside oddities and investigation tools, with the useful information first and the search-engine work happening quietly underneath it.</p>
+    <div class="keyword-cloud" aria-label="Explore topics">
+      <span>Haunted places</span><span>Ghost stories</span><span>Cryptids</span><span>UAP cases</span><span>Roadside oddities</span><span>Hidden history</span><span>Paranormal road trips</span><span>EVP recording</span><span>EMF</span><span>Spirit box</span><span>SLS</span><span>Field investigations</span>
     </div>
   </div>
 
