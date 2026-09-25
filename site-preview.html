@@ -4,334 +4,329 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#09090b">
-<meta name="description" content="Explore haunted places, cryptid sightings, UAP cases, weird roadside attractions and paranormal road trips with Roadside Strange, then take real ghost-hunting tools into the field with Paranormal Suitcase.">
-<title>Roadside Strange + Paranormal Suitcase | Explore. Investigate. Discover.</title>
+<meta name="theme-color" content="#08070a">
+<meta name="description" content="Roadside Strange maps haunted places, cryptid sightings, UAP cases, weird history and paranormal road trips. Paranormal Suitcase brings real phone-based investigation tools into the field.">
+<title>Roadside Strange + Paranormal Suitcase | A Stranger World</title>
 <style>
 :root{
-  --ink:#09090b;
-  --ink2:#101014;
-  --cream:#f2eadc;
-  --muted:#bdb5aa;
-  --line:#343039;
-  --purple:#bb73ff;
-  --purple2:#7025c7;
-  --green:#71ef63;
-  --green2:#179b5d;
-  --teal:#42d9cf;
-  --rust:#cb6948;
-  --gold:#e7b05d;
-  --panel:rgba(15,15,18,.88);
+  --bg:#08070a;--paper:#e8dfcf;--muted:#bcb2a5;--purple:#bb65ff;--violet:#6e2bb6;
+  --green:#55ef58;--teal:#45ddd1;--rust:#b35c3f;--amber:#f0b75d;--line:#3a3337;--black:#070709;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
 body{
-  margin:0;
-  color:var(--cream);
-  background:
-    radial-gradient(circle at 18% 9%,rgba(132,51,207,.24),transparent 27%),
-    radial-gradient(circle at 82% 12%,rgba(25,168,113,.18),transparent 28%),
-    radial-gradient(circle at 50% 115%,rgba(219,119,61,.08),transparent 32%),
-    #09090b;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  margin:0;color:var(--paper);background:
+  radial-gradient(circle at 22% 8%,rgba(121,37,177,.20),transparent 28%),
+  radial-gradient(circle at 77% 11%,rgba(30,156,127,.17),transparent 29%),
+  linear-gradient(#09080b,#07070a 65%,#090807);
+  font-family:Arial,Helvetica,sans-serif;
 }
 body:before{
-  content:"";
-  position:fixed; inset:0; pointer-events:none; z-index:100;
-  opacity:.075;
-  background-image:
-    repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.05) 4px),
-    radial-gradient(circle at 20% 30%,#fff 0 .6px,transparent .8px);
-  background-size:auto,17px 17px;
-  mix-blend-mode:soft-light;
-}
-a{color:inherit}
-.wrap{max-width:1200px;margin:auto;padding:0 24px}
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
-  padding:22px 0;border-bottom:1px solid rgba(255,255,255,.08)
-}
-.divine{font-weight:950;letter-spacing:.16em;font-size:.83rem;color:#d9d1c7}
-.divine b{color:var(--green)}
-.nav{display:flex;gap:19px;align-items:center;flex-wrap:wrap}
-.nav a{font-size:.9rem;text-decoration:none;color:#c4bbb2;font-weight:800}
-.nav a:hover{color:white}
-.hero{padding:58px 0 42px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.brand-panel{
-  min-height:475px;position:relative;overflow:hidden;border-radius:28px;
-  border:1px solid #39343d;padding:34px;
-  box-shadow:0 24px 80px rgba(0,0,0,.38)
-}
-.brand-panel:before{
-  content:"";position:absolute;inset:0;opacity:.48;pointer-events:none;
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.11;
   background:
-    linear-gradient(115deg,transparent 0 44%,rgba(255,255,255,.055) 45%,transparent 46%),
-    repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 7px);
+    radial-gradient(circle at 20% 30%,#fff 0 .55px,transparent .7px) 0 0/18px 18px,
+    repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.035) 6px);
+  mix-blend-mode:soft-light
 }
-.suitcase{
+a{color:inherit}.wrap{max-width:1260px;margin:auto;padding:0 22px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 0 14px;gap:18px}
+.plaque{
+  display:inline-block;padding:8px 12px;border:1px solid #554b45;border-radius:4px;
+  background:linear-gradient(#24201f,#111);font:bold 12px/1 "Courier New",monospace;letter-spacing:.18em;
+  box-shadow:inset 0 0 0 2px #0a0909,0 5px 16px rgba(0,0,0,.35);transform:rotate(-.5deg)
+}
+.plaque b{color:var(--green)}
+.nav{display:flex;gap:17px;flex-wrap:wrap}.nav a{text-decoration:none;font-size:.85rem;font-weight:800;color:#c6bbb0}.nav a:hover{color:white}
+
+.hero{padding:10px 0 52px}
+.backboard{
+  position:relative;overflow:hidden;min-height:700px;border:1px solid #443a3e;border-radius:5px;
   background:
-    radial-gradient(circle at 36% 12%,rgba(196,92,255,.33),transparent 28%),
-    linear-gradient(145deg,#16101c 0%,#0e0b13 62%,#09090d 100%);
+    linear-gradient(90deg,rgba(33,9,46,.96) 0 47.5%,rgba(7,14,14,.96) 52.5% 100%);
+  box-shadow:0 25px 80px rgba(0,0,0,.55),inset 0 0 120px rgba(0,0,0,.55)
 }
-.roadside{
+.backboard:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(circle at 67% 13%,rgba(63,226,207,.25),transparent 28%),
-    linear-gradient(145deg,#0d1717 0%,#0b1111 55%,#0b0b0d 100%);
+    radial-gradient(ellipse at 24% -4%,rgba(187,101,255,.45),transparent 31%),
+    radial-gradient(ellipse at 76% -4%,rgba(69,221,209,.35),transparent 31%),
+    radial-gradient(ellipse at 50% 18%,rgba(240,183,93,.15),transparent 25%);
 }
-.kicker{
-  position:relative;z-index:2;text-transform:uppercase;font-weight:950;
-  letter-spacing:.15em;font-size:.78rem;color:#c9c0b8
+.backboard:after{
+  content:"";position:absolute;left:49%;top:-4%;bottom:-4%;width:3.5%;
+  background:linear-gradient(90deg,transparent,rgba(68,203,194,.22),rgba(187,101,255,.18),transparent);
+  filter:blur(10px);transform:rotate(1deg)
 }
-.suitcase .kicker{color:#d9b7ff}
-.roadside .kicker{color:#91f0cf}
-.sign{
-  position:relative;z-index:2;margin-top:24px;display:inline-block;
-  padding:18px 22px 17px;border:1px solid #5a524b;border-radius:12px;
-  background:linear-gradient(180deg,#242122,#141315);
-  box-shadow:0 11px 30px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.025);
-  transform:rotate(-1deg)
+.rig{position:absolute;left:0;right:0;top:0;height:48px;background:linear-gradient(#151316,#0a090b);border-bottom:1px solid #312a2e;z-index:4}
+.lamp{position:absolute;top:15px;width:12px;height:18px;background:#efe2bd;border-radius:2px 2px 6px 6px;box-shadow:0 0 18px #efe2bd,0 0 42px currentColor}
+.l1{left:18%;color:var(--purple)}.l2{left:34%;color:var(--purple)}.l3{left:66%;color:var(--teal)}.l4{left:82%;color:var(--amber)}
+
+.curtain{
+  position:absolute;left:-18px;top:46px;width:66px;height:86%;z-index:2;
+  background:repeating-linear-gradient(90deg,#190d22 0 12px,#2d123d 12px 24px,#120918 24px 36px);
+  box-shadow:14px 0 30px rgba(0,0,0,.55);clip-path:polygon(0 0,100% 0,87% 8%,100% 18%,89% 28%,100% 39%,88% 49%,100% 60%,88% 72%,100% 84%,84% 100%,0 100%)
 }
-.sign h1,.sign h2{margin:0;line-height:.89;text-transform:uppercase}
-.sign h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.8rem,5.5vw,5.5rem);letter-spacing:-.055em}
-.sign h2{font-size:clamp(2.15rem,4.2vw,4.25rem);letter-spacing:-.055em}
-.suitcase .sign h1{color:#d7b4ff;text-shadow:0 0 24px rgba(189,91,255,.28)}
-.roadside .sign h1{color:#efe5d5}
-.roadside .sign h2{color:var(--green);font-family:"Trebuchet MS",Arial,sans-serif;font-style:italic;margin-top:7px;text-shadow:0 0 18px rgba(113,239,99,.2)}
-.copy{position:relative;z-index:2;max-width:560px;color:#c9c0b8;line-height:1.72;font-size:1.04rem;margin:24px 0 0}
-.features{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:9px;margin:24px 0 0}
-.pill{font-size:.79rem;font-weight:850;letter-spacing:.025em;padding:9px 11px;border:1px solid #3c3841;border-radius:999px;background:rgba(7,7,10,.58)}
-.suitcase .pill{border-color:#4b3561;color:#dfc7fa}
-.roadside .pill{border-color:#285f51;color:#bcf5da}
-.road{
-  position:absolute;right:-50px;bottom:-140px;width:250px;height:390px;
-  background:#17191a;transform:rotate(30deg);border-left:1px solid #494341;border-right:1px solid #494341;
-  opacity:.73
+.left-scene,.right-scene{position:absolute;top:70px;bottom:0;width:50%;padding:26px 34px 40px;z-index:2}
+.left-scene{left:0}.right-scene{right:0}
+.scene-kicker{font:bold 12px/1.2 "Courier New",monospace;letter-spacing:.16em;text-transform:uppercase;color:#c9bcd2}
+.left-scene .scene-kicker{color:#dfc4ff}.right-scene .scene-kicker{color:#b5f0dc}
+
+.ps-title{
+  margin:18px 0 14px;font-family:Georgia,"Times New Roman",serif;font-weight:900;
+  text-transform:uppercase;letter-spacing:-.055em;line-height:.88;font-size:clamp(3.1rem,6vw,6.3rem);
+  color:#d5adff;text-shadow:0 0 16px rgba(187,101,255,.26),2px 2px 0 #3c1d4e
 }
-.road:after{
-  content:"";position:absolute;left:50%;top:0;height:100%;border-left:4px dashed var(--gold);opacity:.74
+.rs-sign{
+  position:relative;display:inline-block;margin:13px 0 18px;padding:14px 20px 17px;
+  background:linear-gradient(#292422,#171412);border:3px solid #736252;border-radius:7px;
+  transform:rotate(-1.5deg);box-shadow:0 12px 28px rgba(0,0,0,.46),inset 0 0 0 2px #16110e
 }
-.house{
-  position:absolute;right:38px;bottom:36px;width:120px;height:86px;background:#09080c;
-  clip-path:polygon(0 35%,20% 35%,20% 18%,30% 18%,30% 35%,53% 0,100% 33%,100% 100%,0 100%);
-  opacity:.9;filter:drop-shadow(0 0 18px rgba(160,65,255,.15))
+.rs-sign:before,.rs-sign:after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:#111;border:1px solid #8b7664;top:7px}
+.rs-sign:before{left:7px}.rs-sign:after{right:7px}
+.rs-road{font:900 clamp(2.9rem,5.5vw,5.8rem)/.87 Georgia,serif;text-transform:uppercase;letter-spacing:-.06em;color:#eadfce;text-shadow:2px 2px 0 #342d29}
+.rs-strange{font:900 italic clamp(2.2rem,4.7vw,4.8rem)/.9 "Trebuchet MS",Arial,sans-serif;text-transform:uppercase;color:var(--green);text-shadow:0 0 13px rgba(85,239,88,.23)}
+.scene-copy{max-width:510px;color:#d0c5bb;font-size:1.02rem;line-height:1.65;text-shadow:0 2px 3px #000}
+.scene-copy strong{color:white}
+.tool-ribbon,.road-ribbon{display:flex;flex-wrap:wrap;gap:8px;margin-top:21px}
+.tag{
+  background:rgba(7,7,9,.72);padding:8px 10px;border:1px solid #514858;
+  font:bold .75rem/1 "Courier New",monospace;text-transform:uppercase;letter-spacing:.03em;transform:rotate(-.4deg)
 }
-.hero-message{text-align:center;padding:42px 16px 13px}
-.hero-message .eyebrow{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#9c938b;font-weight:900}
-.hero-message h2{margin:10px 0 12px;font-size:clamp(2rem,5vw,4.6rem);letter-spacing:-.045em}
-.hero-message h2 .p{color:var(--purple)}
-.hero-message h2 .g{color:var(--green)}
-.hero-message p{max-width:790px;margin:auto;color:#bfb6ae;line-height:1.7;font-size:1.08rem}
-.cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}
-.btn{
-  text-decoration:none;font-weight:950;padding:13px 18px;border-radius:999px;
-  border:1px solid #49444a;background:#141416
+.left-scene .tag{border-color:#694381;color:#dfc2fb}.right-scene .tag{border-color:#2f6955;color:#baf4d7}
+.tag:nth-child(even){transform:rotate(.6deg)}
+.ghosthouse{
+  position:absolute;left:7%;bottom:0;width:38%;height:42%;background:#060609;opacity:.96;
+  clip-path:polygon(0 100%,0 48%,12% 48%,12% 38%,22% 38%,22% 48%,49% 10%,78% 43%,78% 29%,87% 29%,87% 47%,100% 47%,100% 100%);
+  filter:drop-shadow(0 -4px 14px rgba(176,86,255,.18))
 }
-.btn.rs{background:linear-gradient(135deg,#204d3e,#163c2f);border-color:#377f66;color:#cffff0}
-.btn.ps{background:linear-gradient(135deg,#432359,#2c173b);border-color:#704591;color:#ead4ff}
-.btn{transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}.btn:hover{transform:translateY(-2px) rotate(-.4deg);filter:brightness(1.08);box-shadow:0 9px 24px rgba(0,0,0,.24)}
-.ticker{margin:4px 0 14px;border-top:1px solid #342f35;border-bottom:1px solid #342f35;overflow:hidden;background:#0d0d10;transform:rotate(-.25deg)}
-.ticker-track{white-space:nowrap;padding:10px 0;font-weight:950;letter-spacing:.1em;font-size:.78rem;text-transform:uppercase;color:#b9b0a8}
-.ticker-track span{padding:0 22px}.ticker-track .weird{color:var(--green)}.ticker-track .investigate{color:var(--purple)}
-.scribble{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-weight:800;letter-spacing:.02em;transform:rotate(-2deg);display:inline-block}
-.choice-board{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin:34px auto 0;max-width:940px}
-.choice{position:relative;border:1px solid #3d3840;border-radius:18px;padding:23px;background:#101014;text-decoration:none;transition:.18s ease;overflow:hidden}
-.choice:hover{transform:translateY(-3px) rotate(-.35deg)}
-.choice.ps-choice{border-color:#573b6d;background:linear-gradient(145deg,#17101d,#100e14)}
-.choice.rs-choice{border-color:#2d644e;background:linear-gradient(145deg,#0e1915,#0e1211)}
-.choice small{display:block;text-transform:uppercase;letter-spacing:.16em;font-weight:900;color:#8f8780;margin-bottom:6px}
-.choice strong{font-size:1.25rem}.choice p{margin:7px 0 0!important;font-size:.93rem!important;color:#aca39b!important}
-.choice-or{align-self:center;font-family:Georgia,serif;font-style:italic;color:#746d68;font-size:1.1rem}
-.sticker{position:absolute;z-index:3;padding:7px 10px;border:1px solid currentColor;border-radius:5px;background:#111;font-size:.69rem;font-weight:950;letter-spacing:.11em;text-transform:uppercase;box-shadow:0 5px 13px rgba(0,0,0,.35)}
-.suitcase .sticker{right:24px;top:24px;color:#d49cff;transform:rotate(4deg)}
-.roadside .sticker{right:24px;top:24px;color:#7aef79;transform:rotate(3deg)}
-.field-note{margin-top:20px;padding:13px 15px;border-left:3px solid var(--gold);background:rgba(231,176,93,.055);color:#bdb3a9;font-size:.88rem;line-height:1.55;position:relative;z-index:2}
-.field-note b{color:#e7c88b}
-.card{transition:transform .18s ease,border-color .18s ease,background .18s ease}.card:hover{transform:translateY(-3px) rotate(-.25deg);background:rgba(255,255,255,.035)}
-.section{padding:72px 0}
-.section-head{max-width:790px}
-.overline{text-transform:uppercase;letter-spacing:.17em;font-size:.75rem;font-weight:950;color:#9f968f}
-.section h2{font-size:clamp(2rem,4.5vw,4.2rem);letter-spacing:-.045em;line-height:.98;margin:10px 0 15px}
-.section p.intro{color:#bbb2aa;line-height:1.72;font-size:1.05rem;margin:0}
-.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:31px}
-.card{
-  border:1px solid #353039;background:linear-gradient(180deg,rgba(255,255,255,.026),rgba(255,255,255,.012));
-  border-radius:18px;padding:21px;min-height:160px
+.tree{position:absolute;bottom:0;width:4px;background:#09080b;transform-origin:bottom}
+.tree:before,.tree:after{content:"";position:absolute;width:3px;background:#09080b;transform-origin:bottom}
+.t1{left:44%;height:200px;transform:rotate(-7deg)}.t1:before{height:88px;bottom:80px;transform:rotate(-44deg)}.t1:after{height:95px;bottom:120px;transform:rotate(37deg)}
+.t2{left:91%;height:165px;transform:rotate(5deg)}.t2:before{height:70px;bottom:70px;transform:rotate(-48deg)}.t2:after{height:78px;bottom:100px;transform:rotate(42deg)}
+.purple-fog{position:absolute;left:0;right:0;bottom:0;height:38%;background:radial-gradient(ellipse at 30% 100%,rgba(128,41,183,.38),transparent 58%);filter:blur(7px)}
+
+.highway{position:absolute;right:3%;bottom:-130px;width:48%;height:450px;background:#151719;transform:rotate(22deg);border-left:2px solid #4c4b49;border-right:2px solid #4c4b49;opacity:.95}
+.highway:after{content:"";position:absolute;left:50%;top:0;height:100%;border-left:4px dashed #d39d45}
+.windmill{position:absolute;right:7%;bottom:25%;width:5px;height:155px;background:#080a0a}
+.windmill:before{content:"";position:absolute;left:2px;top:-2px;width:100px;height:100px;border:4px solid #080a0a;border-radius:50%;transform:translate(-48%,-48%);clip-path:polygon(0 45%,100% 45%,100% 55%,0 55%,45% 0,55% 0,55% 100%,45% 100%)}
+.car{position:absolute;left:54%;bottom:12%;width:105px;height:34px;background:#090a0a;border-radius:20px 28px 8px 8px;transform:rotate(-5deg);box-shadow:0 0 18px rgba(62,226,198,.12)}
+.car:before{content:"";position:absolute;left:20px;top:-22px;width:55px;height:28px;background:#0c0d0d;clip-path:polygon(18% 100%,32% 0,80% 0,100% 100%)}
+.car:after{content:"";position:absolute;left:13px;right:13px;bottom:-7px;height:14px;background:radial-gradient(circle at 12% 50%,#0a0a0a 0 7px,transparent 8px),radial-gradient(circle at 88% 50%,#0a0a0a 0 7px,transparent 8px)}
+.lantern{position:absolute;bottom:36px;width:26px;height:39px;border:2px solid #8a5c2c;border-radius:4px;background:radial-gradient(circle,#ffd478 0 15%,#a75613 40%,#1b1006 72%);box-shadow:0 0 20px rgba(255,172,68,.32)}
+.lantern:before{content:"";position:absolute;left:4px;right:4px;top:-11px;height:11px;border:2px solid #8a5c2c;border-bottom:0;border-radius:9px 9px 0 0}
+.la{left:45%}.lb{right:3%}
+
+.center-banner{
+  position:absolute;left:50%;bottom:40px;z-index:5;transform:translateX(-50%) rotate(-1deg);
+  width:min(690px,76%);text-align:center;padding:15px 24px;
+  background:rgba(10,9,11,.86);border-top:1px solid #4d4245;border-bottom:1px solid #4d4245;
+  box-shadow:0 10px 28px rgba(0,0,0,.5)
 }
-.card h3{margin:8px 0 7px;font-size:1.08rem}
-.card p{margin:0;color:#aaa199;line-height:1.56;font-size:.93rem}
-.card .icon{font-size:1.25rem}
-.rs-card:nth-child(odd){border-color:#245748}.rs-card:nth-child(even){border-color:#3d4431}
-.ps-card:nth-child(odd){border-color:#4e3565}.ps-card:nth-child(even){border-color:#343d63}
-.bridge{
-  margin:22px 0 0;border:1px solid #424047;border-radius:24px;padding:30px;
-  background:
-    radial-gradient(circle at 10% 30%,rgba(183,94,255,.13),transparent 35%),
-    radial-gradient(circle at 90% 30%,rgba(69,217,190,.12),transparent 35%),
-    #101014
+.center-banner strong{display:block;font:900 clamp(1.35rem,3vw,2.6rem)/1.05 "Segoe Print","Bradley Hand","Comic Sans MS",cursive;color:#eee3dc}
+.center-banner span{display:block;margin-top:8px;font:bold .76rem/1.3 "Courier New",monospace;letter-spacing:.13em;text-transform:uppercase;color:#b9afa6}
+
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}
+.sign-btn{
+  text-decoration:none;padding:12px 16px;border:2px solid #5c524a;background:#181513;
+  font:900 .82rem/1 "Courier New",monospace;letter-spacing:.05em;text-transform:uppercase;
+  box-shadow:4px 5px 0 #050505;transform:rotate(-.5deg)
 }
-.bridge strong{color:#fff}
-.bridge p{margin:7px 0 0;color:#bfb6ae;line-height:1.65}
-.search-block{
-  padding:34px;border:1px solid #3c373d;border-radius:24px;
-  background:linear-gradient(135deg,#121014,#0d1211);margin-top:31px
+.sign-btn:hover{transform:translateY(-2px) rotate(.2deg)}
+.sign-btn.green{color:#bdf8c0;border-color:#377746}.sign-btn.purple{color:#e4c7ff;border-color:#70478b}
+
+.marquee{margin:22px 0 0;padding:11px 0;border-top:1px solid #383035;border-bottom:1px solid #383035;overflow:hidden;background:#0c0b0e;transform:rotate(-.18deg)}
+.marquee div{white-space:nowrap;font:bold .76rem/1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;color:#b9b0a8}
+.marquee span{padding:0 18px}.marquee .g{color:var(--green)}.marquee .p{color:var(--purple)}
+
+.chapter{padding:72px 0;position:relative}
+.chapter-title{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;margin-bottom:28px}
+.num{font:900 4rem/1 Georgia,serif;color:#2a2529;text-shadow:0 0 0 #000}
+.chapter h2{margin:0;font:900 clamp(2.4rem,5vw,4.8rem)/.92 Georgia,serif;letter-spacing:-.05em}
+.chapter .hand{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-style:italic}
+.green{color:var(--green)}.purple{color:var(--purple)}
+.lead{max-width:820px;color:#bfb5ab;font-size:1.05rem;line-height:1.72}
+.road-board{
+  margin-top:32px;border:2px solid #365c4e;background:
+  radial-gradient(circle at 80% 10%,rgba(53,206,167,.08),transparent 30%),#0d1210;
+  box-shadow:9px 12px 0 #050706;padding:24px 24px 19px;transform:rotate(-.25deg)
 }
-.search-block h3{font-size:1.45rem;margin:0 0 10px}
-.search-block p{color:#b9afa7;line-height:1.65;margin:0}
-.keyword-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-top:19px}
-.keyword-cloud span{border:1px solid #3a373c;padding:8px 10px;border-radius:999px;color:#cbc1b8;font-size:.82rem;background:#0b0b0e}
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
-.faq article{border:1px solid #353039;border-radius:18px;padding:21px;background:#101014}
-.faq h3{margin:0 0 8px;font-size:1rem}
-.faq p{margin:0;color:#aaa199;line-height:1.55;font-size:.92rem}
-footer{border-top:1px solid #2b282d;margin-top:30px;padding:38px 0 58px;color:#918980}
-.footer-grid{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
-.footer-links{display:flex;gap:16px;flex-wrap:wrap}
-.footer-links a{color:#bdb4ac}
-.note{font-size:.82rem;color:#736d68;margin-top:15px}
-@media(max-width:860px){
-  .hero-grid{grid-template-columns:1fr}
-  .brand-panel{min-height:420px}
-  .grid6{grid-template-columns:1fr 1fr}
-  .faq{grid-template-columns:1fr}
+.board-title{font:900 1rem/1.1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;color:#8fe5bd;margin-bottom:16px}
+.road-slats{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.road-slats div{
+  border:1px solid #355447;background:#101915;padding:14px 15px;
+  font:800 .92rem/1.25 Arial,sans-serif;color:#d9e7de;position:relative
 }
-@media(max-width:590px){
-  .wrap{padding:0 16px}
-  .nav{display:none}
-  .hero{padding-top:32px}
-  .brand-panel{padding:25px;min-height:390px}
-  .grid6{grid-template-columns:1fr}
-  .section{padding:55px 0}
-  .sign{padding:15px 17px}
+.road-slats div:before{content:"↗";margin-right:10px;color:var(--green)}
+.road-slats small{display:block;color:#9eaaa3;margin:5px 0 0 26px;font-weight:400;line-height:1.4}
+
+.casefile{
+  margin-top:32px;padding:26px;border:1px solid #5c4268;background:
+  linear-gradient(95deg,transparent 0 49%,rgba(255,255,255,.025) 50%,transparent 51%),#110d15;
+  box-shadow:9px 12px 0 #050407;position:relative;transform:rotate(.2deg)
+}
+.casefile:before{content:"CASE FILE // OPEN";position:absolute;right:16px;top:13px;color:#b878e8;font:bold .72rem/1 "Courier New",monospace;letter-spacing:.11em}
+.evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ev{
+  position:relative;padding:20px 15px 16px;border:1px solid #4b3b52;background:#151019;
+  min-height:140px;transform:rotate(-.5deg)
+}
+.ev:nth-child(even){transform:rotate(.6deg)}
+.ev:before{content:"";position:absolute;width:46px;height:11px;top:-6px;left:50%;transform:translateX(-50%) rotate(-2deg);background:rgba(213,196,153,.28)}
+.ev strong{display:block;color:#eadcf3;font-size:1rem;margin-bottom:6px}.ev p{margin:0;color:#aaa0ac;line-height:1.5;font-size:.9rem}
+
+.crossroads{
+  margin-top:34px;padding:26px 26px 28px;border-top:1px solid #41383d;border-bottom:1px solid #41383d;
+  background:radial-gradient(circle at 18% 40%,rgba(147,57,205,.12),transparent 31%),radial-gradient(circle at 82% 42%,rgba(48,191,153,.11),transparent 31%),#0d0c0f;
+  text-align:center
+}
+.crossroads h3{margin:0;font:900 clamp(1.7rem,3.6vw,3rem)/1.05 "Segoe Print","Bradley Hand","Comic Sans MS",cursive}
+.crossroads p{max-width:760px;margin:12px auto 0;color:#b8aea5;line-height:1.65}
+
+.rabbit{margin-top:28px;display:flex;gap:8px;flex-wrap:wrap}
+.rabbit span{padding:8px 10px;border:1px solid #3c363a;background:#0c0b0d;font:bold .76rem/1 "Courier New",monospace;color:#c5bbb0;transform:rotate(-.4deg)}
+.rabbit span:nth-child(even){transform:rotate(.55deg)}
+
+.fieldnotes{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:28px}
+.note{border-left:3px solid var(--amber);padding:16px 18px;background:#111012}
+.note h3{margin:0 0 6px;font-size:1rem}.note p{margin:0;color:#a99f97;line-height:1.55;font-size:.91rem}
+
+footer{padding:38px 0 55px;border-top:1px solid #302a2e;color:#8f8780}
+.footerrow{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.footerlinks{display:flex;gap:16px;flex-wrap:wrap}.footerlinks a{color:#b7aea6}
+.tiny{font-size:.8rem;color:#716a65;margin-top:12px}
+
+@media(max-width:900px){
+  .backboard{min-height:1120px}
+  .left-scene,.right-scene{width:100%;height:50%;left:0;right:0}
+  .left-scene{top:60px;bottom:auto}.right-scene{top:55%;bottom:auto}
+  .backboard{background:linear-gradient(180deg,#24102f 0 48%,#0b1716 52% 100%)}
+  .backboard:after{left:0;right:0;top:49%;width:auto;height:4%;bottom:auto}
+  .center-banner{bottom:48%;width:88%}
+  .ghosthouse{width:30%;height:23%}.highway{width:38%;height:330px;bottom:-90px}
+  .road-slats,.fieldnotes{grid-template-columns:1fr}.evidence{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .wrap{padding:0 14px}.nav{display:none}.hero{padding-top:5px}
+  .backboard{min-height:1210px}.left-scene,.right-scene{padding:24px 20px 30px}
+  .center-banner{width:92%;padding:12px 14px}
+  .evidence{grid-template-columns:1fr}.chapter{padding:55px 0}
+  .road-slats{grid-template-columns:1fr}.lamp{display:none}.curtain{width:40px}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="topbar">
-  <div class="divine">DIVINE<b>APPS</b></div>
+  <div class="plaque">DIVINE<b>APPS</b> // AFTER DARK</div>
   <nav class="nav" aria-label="Main navigation">
-    <a href="#roadside">Roadside Strange</a>
-    <a href="#suitcase">Paranormal Suitcase</a>
-    <a href="#discover">Discover</a>
-    <a href="support.html">Support</a>
+    <a href="#roadside">Roadside Strange</a><a href="#suitcase">Paranormal Suitcase</a><a href="#rabbit-hole">Pick a rabbit hole</a><a href="support.html">Support</a>
   </nav>
 </header>
 
 <main>
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-grid">
-    <article class="brand-panel suitcase">
-      <div class="sticker">Pack light. Investigate weird.</div>
-      <div class="kicker">Investigate the unknown</div>
-      <div class="sign"><h1>Paranormal<br>Suitcase</h1></div>
-      <p class="copy">Your phone is already coming with you. Paranormal Suitcase turns it into a practical field kit for recording, measuring, reviewing and keeping track of the moments that make everyone in the room go, “...did you hear that?”</p>
-      <div class="features" aria-label="Paranormal Suitcase features">
-        <span class="pill">EVP Recorder</span><span class="pill">K2 / EMF</span><span class="pill">Spirit Box</span><span class="pill">SLS Camera</span><span class="pill">Anomaly Compass</span><span class="pill">Journal</span>
+<section class="hero" aria-labelledby="main-title">
+  <div class="backboard">
+    <div class="rig"></div><i class="lamp l1"></i><i class="lamp l2"></i><i class="lamp l3"></i><i class="lamp l4"></i>
+    <div class="curtain" aria-hidden="true"></div>
+
+    <section class="left-scene" aria-label="Paranormal Suitcase">
+      <div class="scene-kicker">Real tools · real investigations · right on your phone</div>
+      <h1 class="ps-title">Paranormal<br>Suitcase</h1>
+      <p class="scene-copy">For the bit after someone says <strong>“did you hear that?”</strong> EVP recording, K2-style EMF readings, Spirit Box sessions, SLS pose mapping, directional anomaly checks and an investigation journal, using the hardware your phone actually has.</p>
+      <div class="tool-ribbon">
+        <span class="tag">EVP Recorder</span><span class="tag">K2 / EMF</span><span class="tag">Spirit Box</span><span class="tag">SLS Camera</span><span class="tag">Anomaly Compass</span><span class="tag">Journal</span>
       </div>
-      <div class="house" aria-hidden="true"></div>
-    </article>
+      <div class="ghosthouse" aria-hidden="true"></div><div class="tree t1" aria-hidden="true"></div><div class="purple-fog" aria-hidden="true"></div>
+    </section>
 
-    <article class="brand-panel roadside">
-      <div class="sticker">Normal routes are overrated.</div>
-      <div class="kicker">Find the weird</div>
-      <div class="sign"><h1>Roadside</h1><h2>Strange</h2></div>
-      <p class="copy">For the person who sees a weird road sign and immediately says, “turn here.” Find hauntings, cryptids, UAP cases, strange history and the roadside stories most maps completely ignore.</p>
-      <div class="features" aria-label="Roadside Strange features">
-        <span class="pill">Haunted Places</span><span class="pill">Cryptids</span><span class="pill">UAP Cases</span><span class="pill">Weird History</span><span class="pill">Road Trips</span><span class="pill">Strange Drive</span>
+    <section class="right-scene" aria-label="Roadside Strange">
+      <div class="scene-kicker">Find the weird · explore the unknown · pull over for the story</div>
+      <div class="rs-sign"><div class="rs-road">Roadside</div><div class="rs-strange">Strange</div></div>
+      <p class="scene-copy">For the person who spots an odd road sign and says <strong>“turn here.”</strong> Find haunted places, cryptid reports, UAP cases, strange history and the roadside stories ordinary maps leave out.</p>
+      <div class="road-ribbon">
+        <span class="tag">Hauntings</span><span class="tag">Cryptids</span><span class="tag">UAP</span><span class="tag">Weird History</span><span class="tag">Road Trips</span><span class="tag">Strange Drive</span>
       </div>
-      <div class="road" aria-hidden="true"></div>
-    </article>
-  </div>
+      <div class="windmill" aria-hidden="true"></div><div class="highway" aria-hidden="true"></div><div class="car" aria-hidden="true"></div><div class="tree t2" aria-hidden="true"></div>
+    </section>
 
-  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Ghosts</span> · <span>Cryptids</span> · <span class="weird">Take the weird way home</span> · <span>UAPs</span> · <span>Strange history</span> · <span class="investigate">Bring the suitcase</span> · <span>Road trips</span> · <span>EVPs</span> · <span>Things that go bump in the night</span></div></div>
-  <div class="hero-message">
-    <div class="eyebrow">Two apps · one strange world</div>
-    <h2 id="hero-title">Find something <span class="g scribble">weird.</span><br>Then go <span class="p scribble">see for yourself.</span></h2>
-    <p>Roadside Strange finds the places worth pulling over for. Paranormal Suitcase comes along when curiosity turns into an investigation. No fake science. No boring road trips. Just a very large world full of odd little stories.</p>
-    <div class="choice-board">
-      <a class="choice rs-choice" href="#roadside"><small>I feel like exploring</small><strong>Show me something strange →</strong><p>Ghosts, cryptids, UAPs, hidden history and road trips.</p></a>
-      <div class="choice-or">or</div>
-      <a class="choice ps-choice" href="#suitcase"><small>I brought equipment</small><strong>Let’s investigate it →</strong><p>Real phone tools, recordings and field notes.</p></a>
-    </div>
-  </div>
-</section>
+    <div class="lantern la" aria-hidden="true"></div><div class="lantern lb" aria-hidden="true"></div>
 
-<section class="section" id="roadside">
-  <div class="section-head">
-    <div class="overline">Roadside Strange</div>
-    <h2>The map your sensible friend would never make.</h2>
-    <p class="intro">Search for haunted places near you, cryptid sightings, UAP cases and strange local history, then turn the ones that make you say “wait, that’s near us?” into an actual road trip.</p>
-  </div>
-  <div class="grid6">
-    <div class="card rs-card"><div class="icon">👻</div><h3>Haunted places & ghost stories</h3><p>Explore reported hauntings and the documented stories connected with real locations.</p></div>
-    <div class="card rs-card"><div class="icon">🦶</div><h3>Cryptid reports</h3><p>Browse creature sightings, regional cases and public destinations connected with cryptid lore.</p></div>
-    <div class="card rs-card"><div class="icon">🛸</div><h3>UAP cases</h3><p>Find unusual aerial reports and notable cases mapped to the areas connected with them.</p></div>
-    <div class="card rs-card"><div class="icon">🛣️</div><h3>Paranormal road trips</h3><p>Build trips around strange locations instead of discovering the interesting stop after you already drove past it.</p></div>
-    <div class="card rs-card"><div class="icon">🎧</div><h3>Strange Drive</h3><p>Hear about unusual places around you while you travel so the journey becomes part of the discovery.</p></div>
-    <div class="card rs-card"><div class="icon">📍</div><h3>Public-access focused</h3><p>Cases are aimed toward appropriate public destinations and access notes rather than sending people onto private property.</p></div>
-  </div>
-  <div class="field-note"><b>Road trip rule #1:</b> if there’s a normal way home and a weird way home, you already know which one we’re taking.</div>
-  <div class="cta-row" style="justify-content:flex-start">
-    <a class="btn rs" href="roadside-strange.html">Take the weird way home →</a>
-  </div>
-</section>
-
-<section class="section" id="suitcase">
-  <div class="section-head">
-    <div class="overline">Paranormal Suitcase</div>
-    <h2>Ghost hunting tools without pretending your phone is magic.</h2>
-    <p class="intro">Paranormal Suitcase uses the hardware your phone genuinely has. It helps you record and compare what happens during an investigation, while being very clear about what a reading means and what it absolutely does not prove.</p>
-  </div>
-  <div class="grid6">
-    <div class="card ps-card"><div class="icon">🎙️</div><h3>EVP Recorder</h3><p>Capture microphone audio, mark moments during a session and review recordings with playback controls.</p></div>
-    <div class="card ps-card"><div class="icon">📟</div><h3>K2 / EMF</h3><p>Watch real magnetometer changes against a local baseline with familiar K2-style feedback.</p></div>
-    <div class="card ps-card"><div class="icon">📻</div><h3>Spirit Box</h3><p>An experimental audio tool for investigation sessions, presented with clear information about its source and limitations.</p></div>
-    <div class="card ps-card"><div class="icon">🧍</div><h3>SLS Camera</h3><p>Visible-light pose mapping using on-device pose detection rather than pretending the phone has sensors it does not.</p></div>
-    <div class="card ps-card"><div class="icon">🧭</div><h3>Anomaly Compass</h3><p>Record magnetic-field changes by direction during a deliberate sweep for repeatable comparisons.</p></div>
-    <div class="card ps-card"><div class="icon">📚</div><h3>Investigation Journal</h3><p>Keep recordings, evidence, source logs and session markers organized for later review.</p></div>
-  </div>
-  <div class="field-note"><b>Our rule:</b> weird is welcome. Made-up hardware isn’t.</div>
-  <div class="cta-row" style="justify-content:flex-start">
-    <a class="btn ps" href="paranormal-suitcase.html">Open the suitcase →</a>
-  </div>
-</section>
-
-<section class="section" id="discover">
-  <div class="bridge">
-    <div class="overline">The whole point</div>
-    <h2 style="margin:9px 0 10px">“What’s around here?” should never have a boring answer.</h2>
-    <p><strong>Roadside Strange</strong> gets you off the obvious route. <strong>Paranormal Suitcase</strong> gives you something useful to do when you arrive. Use either one on its own, or make a questionable evening of it and use both.</p>
-  </div>
-
-  <div class="search-block">
-    <div class="overline">Pick your rabbit hole</div>
-    <h3>Ghosts? Cryptids? UFOs? Weird history? Yes.</h3>
-    <p>Start with whatever made you curious. The site will grow into dedicated guides for haunted places, paranormal road trips, cryptid sightings, UAP cases, roadside oddities and investigation tools, with the useful information first and the search-engine work happening quietly underneath it.</p>
-    <div class="keyword-cloud" aria-label="Explore topics">
-      <span>Haunted places</span><span>Ghost stories</span><span>Cryptids</span><span>UAP cases</span><span>Roadside oddities</span><span>Hidden history</span><span>Paranormal road trips</span><span>EVP recording</span><span>EMF</span><span>Spirit box</span><span>SLS</span><span>Field investigations</span>
+    <div class="center-banner">
+      <strong id="main-title">Two apps. A stranger world.</strong>
+      <span>Explore it with Roadside Strange · Investigate it with Paranormal Suitcase</span>
     </div>
   </div>
 
-  <div class="faq" aria-label="Frequently asked questions">
-    <article><h3>How do I find haunted places near me?</h3><p>Roadside Strange uses a map and adjustable search area to surface reported hauntings, strange history and other unusual cases around the location you choose.</p></article>
-    <article><h3>Can I build a haunted or paranormal road trip?</h3><p>Roadside Strange includes road-trip tools for turning strange locations into stops, with directions and public-access information where available.</p></article>
-    <article><h3>Can a phone work as an EMF meter?</h3><p>Phones with a magnetometer can measure magnetic-field changes. Paranormal Suitcase uses supported hardware and explains environmental causes and limitations.</p></article>
-    <article><h3>Does Paranormal Suitcase have thermal imaging?</h3><p>No. It does not claim thermal imaging hardware that a standard phone does not have. The toolkit is built around supported phone sensors, camera, microphone and software.</p></article>
+  <div class="hero-actions">
+    <a class="sign-btn green" href="#roadside">Take the weird way home →</a>
+    <a class="sign-btn purple" href="#suitcase">Open the suitcase →</a>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div>
+    <span>ghosts</span> · <span>cryptids</span> · <span class="g">weird roads welcome</span> · <span>UAPs</span> · <span>EVPs</span> · <span>strange history</span> · <span class="p">bring the suitcase</span> · <span>road trips</span> · <span>things that go bump in the night</span>
+  </div></div>
+</section>
+
+<section class="chapter" id="roadside">
+  <div class="chapter-title"><div class="num">01</div><div><div class="scene-kicker">ROADSIDE STRANGE</div><h2>The map your sensible friend <span class="green hand">would never make.</span></h2></div></div>
+  <p class="lead">Search for haunted places near you, cryptid sightings, UAP cases and strange local history, then turn the ones that make you say “wait, that’s near us?” into actual stops. Because the gas station off the interstate is more interesting when you know what supposedly happened behind it.</p>
+  <div class="road-board">
+    <div class="board-title">NEXT EXITS // PROBABLY NOT ON THE TOURIST BROCHURE</div>
+    <div class="road-slats">
+      <div>Haunted places<small>Reported hauntings and the stories attached to real locations.</small></div>
+      <div>Cryptids<small>Creature reports, regional cases and public destinations tied to the lore.</small></div>
+      <div>UAP cases<small>Unusual aerial reports mapped to the places connected with them.</small></div>
+      <div>Weird history<small>The odd, overlooked and occasionally unbelievable stories hiding in plain sight.</small></div>
+      <div>Road Trips<small>String the strange stops together instead of finding out about them after you drove past.</small></div>
+      <div>Strange Drive<small>Hear about nearby stories while you travel and keep your eyes where they belong.</small></div>
+    </div>
+  </div>
+  <div class="hero-actions" style="justify-content:flex-start"><a class="sign-btn green" href="roadside-strange.html">Explore Roadside Strange →</a></div>
+</section>
+
+<section class="chapter" id="suitcase">
+  <div class="chapter-title"><div class="num">02</div><div><div class="scene-kicker">PARANORMAL SUITCASE</div><h2>Weird is welcome. <span class="purple hand">Made-up hardware isn’t.</span></h2></div></div>
+  <p class="lead">Paranormal Suitcase is built for actual field use. It records, measures and organizes what your phone can genuinely detect, then tells you what the reading means, what can cause false positives and what it absolutely does not prove.</p>
+  <div class="casefile">
+    <div class="evidence">
+      <div class="ev"><strong>EVP Recorder</strong><p>Capture microphone audio, mark interesting moments and scrub back through recordings during review.</p></div>
+      <div class="ev"><strong>K2 / EMF</strong><p>Watch real magnetometer changes against a local baseline with familiar K2-style feedback.</p></div>
+      <div class="ev"><strong>Spirit Box</strong><p>An experimental audio session tool with clear information about the source and its limitations.</p></div>
+      <div class="ev"><strong>SLS Camera</strong><p>Visible-light pose mapping using on-device pose detection, not imaginary infrared hardware.</p></div>
+      <div class="ev"><strong>Anomaly Compass</strong><p>Record magnetic-field changes by direction during a deliberate 360° sweep.</p></div>
+      <div class="ev"><strong>Investigation Journal</strong><p>Keep recordings, evidence, source logs and session markers together for later review.</p></div>
+    </div>
+  </div>
+  <div class="hero-actions" style="justify-content:flex-start"><a class="sign-btn purple" href="paranormal-suitcase.html">Open Paranormal Suitcase →</a></div>
+</section>
+
+<section class="chapter" id="rabbit-hole">
+  <div class="crossroads">
+    <div class="scene-kicker">THE WHOLE POINT</div>
+    <h3>“What’s around here?” should never have a boring answer.</h3>
+    <p>Roadside Strange gets you off the obvious route. Paranormal Suitcase gives you something useful to do if curiosity turns into an investigation. Use either one on its own, or make a questionable evening of it and use both.</p>
+  </div>
+
+  <div class="chapter-title" style="margin-top:42px"><div class="num">03</div><div><div class="scene-kicker">PICK A RABBIT HOLE</div><h2>What kind of strange are you <span class="green hand">looking for?</span></h2></div></div>
+  <p class="lead">The finished site will grow into useful pages for the things people are actually searching for, without turning the homepage into a wall of SEO nonsense.</p>
+  <div class="rabbit">
+    <span>Haunted places near me</span><span>Paranormal map</span><span>Ghost map</span><span>Cryptid sightings</span><span>UAP map</span><span>Haunted road trip</span><span>Weird roadside attractions</span><span>Ghost hunting tools</span><span>EVP recorder</span><span>EMF detector</span><span>Spirit box app</span><span>SLS camera</span>
+  </div>
+
+  <div class="fieldnotes">
+    <div class="note"><h3>Looking for haunted places near you?</h3><p>Roadside Strange uses a map and adjustable search area to surface reported hauntings, strange history and other unusual cases around the location you choose.</p></div>
+    <div class="note"><h3>Can you build a haunted road trip?</h3><p>Yes. Roadside Strange turns unusual locations into stops, with directions and public-access information where available.</p></div>
+    <div class="note"><h3>Can a phone really measure EMF?</h3><p>Phones with a magnetometer can measure magnetic-field changes. Paranormal Suitcase uses supported hardware and explains environmental causes and limitations.</p></div>
+    <div class="note"><h3>Does Paranormal Suitcase fake thermal imaging?</h3><p>No. If the phone does not have the hardware, the app does not pretend it does.</p></div>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="footer-grid">
-    <div><strong>DivineApps</strong><div class="note">Roadside Strange · Paranormal Suitcase</div></div>
-    <div class="footer-links">
-      <a href="index.html">Roadside Strange Privacy</a>
-      <a href="paranormal-suitcase-privacy.html">Paranormal Suitcase Privacy</a>
-      <a href="support.html">Support</a>
-    </div>
+  <div class="footerrow">
+    <div><strong>DivineApps // After Dark</strong><div class="tiny">Roadside Strange · Paranormal Suitcase</div></div>
+    <div class="footerlinks"><a href="index.html">Roadside Strange Privacy</a><a href="paranormal-suitcase-privacy.html">Paranormal Suitcase Privacy</a><a href="support.html">Support</a></div>
   </div>
-  <div class="note">Preview only. Existing store, privacy, support, advertising and verification URLs have not been changed.</div>
+  <div class="tiny">Preview only. Existing privacy, support, advertising, store and verification URLs have not been changed.</div>
 </footer>
 </div>
 </body>
