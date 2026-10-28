@@ -1,99 +1,37 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08080d">
-<meta name="description" content="Paranormal Suitcase is a field toolkit for paranormal investigators built around real phone sensors, real recordings, and clear limitations.">
-<title>Paranormal Suitcase | DivineApps</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07050b"><meta name="description" content="Paranormal Suitcase — The House Is Listening. Your portable paranormal investigation toolkit. Now on iPhone and Android."><title>Paranormal Suitcase | The House Is Listening</title>
 <style>
-:root{--bg:#07070c;--panel:#101018;--panel2:#151020;--text:#f7f5fb;--muted:#bdb7c8;--green:#66f18a;--purple:#c45cff;--blue:#58bfff;--line:#2d2838}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 20% 10%,rgba(102,241,138,.12),transparent 28%),radial-gradient(circle at 82% 12%,rgba(196,92,255,.14),transparent 30%),#07070c;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-a{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 22px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:20px}.brand{font-weight:900;letter-spacing:.08em}.brand span{color:var(--green)}nav a{text-decoration:none;color:var(--muted);font-weight:700}.navlinks{display:flex;gap:20px;align-items:center}
-.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:54px;align-items:center;padding:70px 0 64px}
-.kicker{color:var(--green);font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem}
-h1{font-size:clamp(3rem,8vw,6.8rem);line-height:.9;margin:12px 0 22px;letter-spacing:-.055em}
-.gradient{background:linear-gradient(90deg,var(--green),#a9ffca 35%,var(--blue) 65%,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{font-size:1.18rem;line-height:1.7;color:var(--muted);max-width:720px}
-.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{display:inline-block;padding:14px 19px;border-radius:999px;text-decoration:none;font-weight:900;border:1px solid #3a3446}.primary{background:var(--green);color:#07100a;border-color:var(--green)}.secondary{background:#15101f;color:#fff;border-color:#6e3e8f}
-.device{position:relative;min-height:470px;border:1px solid #2f2a39;background:linear-gradient(150deg,#0e1114,#0b0a12 55%,#150c1d);border-radius:36px;padding:28px;box-shadow:0 0 55px rgba(102,241,138,.08),0 0 75px rgba(196,92,255,.08);overflow:hidden}
-.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(102,241,138,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(88,191,255,.05) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent)}
-.case{position:relative;margin:70px auto 35px;width:72%;aspect-ratio:1.38;border:5px solid var(--green);border-radius:26px;box-shadow:0 0 26px rgba(102,241,138,.45)}
-.case:before{content:"";position:absolute;left:34%;right:34%;top:-44px;height:39px;border:5px solid var(--green);border-bottom:0;border-radius:16px 16px 0 0}
-.wave{position:absolute;left:12%;right:12%;top:44%;height:5px;background:var(--green);box-shadow:0 0 14px rgba(102,241,138,.7)}
-.scan{position:relative;text-align:center;font-size:.8rem;letter-spacing:.2em;color:#9ed8bc;font-weight:800}
-.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:25px}.mini{padding:14px;border:1px solid #303744;border-radius:16px;background:#0d1015;text-align:center;color:#cad0d6;font-size:.8rem}.mini b{display:block;color:#fff;font-size:1rem;margin-bottom:5px}
-.section{padding:66px 0}.section h2{font-size:clamp(2rem,4vw,3.5rem);margin:0 0 12px;letter-spacing:-.04em}.section .intro{color:var(--muted);max-width:760px;line-height:1.7}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}.card{background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:22px;padding:24px}.card:nth-child(3n+1){border-color:#4d3561}.card:nth-child(3n+2){border-color:#245d72}.card:nth-child(3n+3){border-color:#2e6d45}.icon{font-size:1.4rem}.card h3{margin:12px 0 8px}.card p{margin:0;color:var(--muted);line-height:1.6}
-.truth{border:1px solid #274f34;background:linear-gradient(135deg,rgba(102,241,138,.08),rgba(196,92,255,.06));border-radius:28px;padding:32px;margin-top:26px}.truth strong{color:var(--green)}
-.cross{display:grid;grid-template-columns:1fr .9fr;gap:32px;align-items:center;background:linear-gradient(135deg,#17101e,#0a1112);border:1px solid #503361;border-radius:30px;padding:34px}.cross .logo{font-size:clamp(2.6rem,6vw,5.6rem);line-height:.9;font-weight:950;letter-spacing:-.055em}.cross .logo em{font-style:normal;color:var(--purple)}
-footer{padding:45px 0 60px;color:#8f8999;font-size:.92rem;border-top:1px solid #201d27;margin-top:40px}
-.smalllinks{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
-@media(max-width:820px){.hero,.cross{grid-template-columns:1fr}.device{min-height:410px}.cards{grid-template-columns:1fr 1fr}.navlinks{display:none}}
-@media(max-width:560px){.cards{grid-template-columns:1fr}.hero{padding-top:38px}.case{width:82%}.trio{grid-template-columns:1fr}.device{min-height:520px}}
-</style>
-</head>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--bg:#08060e;--ink:#f9f7ff;--muted:#b2a9bd;--green:#4bffc4;--violet:#b45bff;--line:#664c785e}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font-family:'DM Sans',system-ui,sans-serif}body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 18% 3%,#00eaab16,transparent 37%),radial-gradient(ellipse at 91% 26%,#b000ff16,transparent 40%),linear-gradient(#08060e,#08060e)}a{text-decoration:none;color:inherit}a:focus-visible{outline:2px solid var(--green);outline-offset:4px}h1,h2,h3,.display{font-family:'Barlow Condensed',Impact,system-ui,sans-serif;text-transform:uppercase}h1,h2,h3,p{margin-top:0}.wrap{max-width:1200px;width:calc(100% - 44px);margin-inline:auto}.top{position:sticky;z-index:20;top:0;background:#08060edc;backdrop-filter:blur(22px);border-bottom:1px solid #bfa1df24}.topinner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}.wordmark{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.085em;font-size:21px}.wordmark b{color:var(--green)}.nav{display:flex;gap:25px;align-items:center;font-size:12px;font-weight:800;letter-spacing:.1em}.nav a:hover{color:var(--green)}.nav .get{border:1px solid #70ffcb88;padding:11px 17px;border-radius:4px;color:var(--green)}.hero{min-height:770px;position:relative;overflow:hidden;border-bottom:1px solid #ffffff18}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 73% 36%,#9d0cff2c,transparent 30%),radial-gradient(circle at 65% 46%,#17ff9d1e,transparent 38%);pointer-events:none}.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#ffffff05 0px,#ffffff05 1px,transparent 1px,transparent 68px),repeating-linear-gradient(90deg,#ffffff04 0px,#ffffff04 1px,transparent 1px,transparent 68px);mask-image:linear-gradient(to bottom,transparent 0%,black 35%,black 80%,transparent);pointer-events:none}.herogrid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:38px;min-height:770px;position:relative;z-index:1}.eyebrow{font-size:12px;letter-spacing:.26em;font-weight:800;color:var(--green);text-transform:uppercase}.live{display:inline-flex;gap:9px;align-items:center;color:#dcfff2;background:#37ffc010;border:1px solid #3effa958;padding:9px 13px;font-size:11px;font-weight:800;letter-spacing:.17em}.live:before{content:"";height:7px;width:7px;background:#5cffb9;border-radius:50%;box-shadow:0 0 12px #52ffb3}h1{font-size:clamp(74px,9.2vw,148px);font-weight:900;letter-spacing:-.025em;line-height:.75;margin:35px 0 24px;text-shadow:0 0 50px #b44bff34}h1 span{display:block;color:#6cffcc;text-shadow:0 0 28px #03ffad47}.strap{font-family:'Barlow Condensed',sans-serif;font-size:clamp(23px,3vw,37px);letter-spacing:.055em;font-weight:700;text-transform:uppercase;margin:27px 0 13px}.intro{max-width:560px;color:#c5bccf;font-size:16px;line-height:1.75}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin:29px 0 18px}.button{padding:15px 21px;border:1px solid #85ffe0;font-size:13px;font-weight:800;letter-spacing:.04em;color:#04140e;background:linear-gradient(110deg,#76ffd1,#a6ffdd);box-shadow:0 0 35px #00ff9930;transition:transform .2s,filter .2s}.button:hover{transform:translateY(-3px);filter:brightness(1.08)}.button.secondary{background:#35174678;color:white;border-color:#b863ff;box-shadow:0 0 30px #a736ff17}.micro{font-size:11px;letter-spacing:.06em;color:#afa4b9}.heroart{height:650px;position:relative;display:grid;place-items:center}.halo{position:absolute;width:440px;height:440px;max-width:110%;border:1px solid #61ffc238;border-radius:50%;box-shadow:0 0 140px 40px #9d20ff29,inset 0 0 100px #13ffc21a}.halo:after{content:"";position:absolute;inset:32px;border-radius:50%;border:1px dashed #a962ff57}.phone{display:block;width:270px;max-width:75%;position:relative;z-index:2;border:6px solid #25212e;border-radius:28px;background:#06050a;box-shadow:0 0 0 1px #a363de,0 30px 70px #000d,0 0 100px #8f2dff66;transform:rotate(5deg)}.phone img{width:100%;display:block;border-radius:20px}.vert{writing-mode:vertical-rl;position:absolute;right:0;top:14%;font-size:11px;letter-spacing:.35em;color:#d1a6fa}.ticker{border-block:1px solid #b869ff4b;background:#13091c;color:#e4c9fc;padding:17px 0;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.25em;font-size:16px;overflow:hidden;white-space:nowrap;text-align:center}.ticker b{color:var(--green);padding:0 22px}section{padding:100px 0}.section-top{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:40px}h2{font-size:clamp(48px,6.5vw,92px);line-height:.9;letter-spacing:.01em;margin:12px 0 0;font-weight:800}h2 strong{color:var(--green);font-weight:inherit}.section-top p{max-width:400px;line-height:1.7;color:var(--muted);margin:0}.screens{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.shot{position:relative;background:linear-gradient(165deg,#1c1027,#0a0710);border:1px solid #76508f85;padding:15px 15px 22px;box-shadow:0 18px 40px #0006;transition:transform .2s}.shot:hover{transform:translateY(-5px)}.shot img{width:100%;height:370px;object-fit:contain;display:block;filter:drop-shadow(0 0 16px #b12cff34)}.shot .num{color:var(--green);font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.15em}.shot h3{font-size:27px;letter-spacing:.04em;margin:6px 0 5px}.shot p{font-size:12px;color:#b6a9c2;line-height:1.65;margin:0}.featureline{margin-top:25px;border-top:1px solid #ffffff20;padding-top:23px;display:flex;gap:20px;flex-wrap:wrap;font-family:'Barlow Condensed';letter-spacing:.11em;font-weight:700;color:#bcacc9}.featureline span:before{content:'✦ ';color:var(--green)}.darksection{background:linear-gradient(120deg,#120b1c,#100a18 45%,#061710);border-block:1px solid #ab5cff3d}.split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px}.split p{line-height:1.85;color:#c5baca}.statement{font-family:'Barlow Condensed';font-size:clamp(26px,3.2vw,42px);line-height:1.15;text-transform:uppercase;font-weight:700;color:#f1e8fb}.statement em{font-style:normal;color:var(--green)}.screensbig{display:flex;gap:14px;align-items:center;justify-content:center}.screensbig img{max-height:480px;max-width:48%;object-fit:contain;filter:drop-shadow(0 25px 40px #000a)}.screensbig img:nth-child(2){transform:translateY(36px)}.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#66387c55;border:1px solid #66387c55}.tool{background:#100c17;padding:23px 25px;min-height:125px}.tool h3{font-size:24px;margin:7px 0 3px;letter-spacing:.04em}.tool p{font-size:12px;line-height:1.6;color:#b7a9c2;margin:0}.tag{font-size:10px;letter-spacing:.18em;color:var(--green);font-weight:800}.tag.p{color:#d5a0ff}.bottom{text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#4e136f60,transparent 62%),#090511}.bottom h2{font-size:clamp(60px,9vw,125px);margin-bottom:18px}.bottom .wrap{position:relative;z-index:2}.bottom p{color:#cdbed9}.bottom .buttons{justify-content:center}.price{display:inline-block;border:1px solid #4ef6b45b;padding:13px 19px;color:#b5ffdf;font-size:13px;margin:15px 0 6px}.foot{padding:40px 0;border-top:1px solid #9a4cc943;background:#060509}.footin{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.foot p{font-size:12px;color:#988ca2;max-width:650px;line-height:1.8}.footlinks{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:#d6c9e2}.footlinks a:hover{color:var(--green)}@media(max-width:1000px){.hero,.herogrid{min-height:650px}.screens{grid-template-columns:repeat(2,1fr)}.heroart{height:550px}.phone{width:220px}.split{gap:25px}}@media(max-width:700px){.nav a:not(.get){display:none}.hero,.herogrid{min-height:0}.hero{padding:65px 0}.herogrid,.split{grid-template-columns:1fr}.heroart{height:490px}.phone{width:200px}.vert{display:none}.section-top{display:block}.section-top p{margin-top:15px}.screens{gap:10px}.shot{padding:10px}.shot img{height:250px}.shot h3{font-size:21px}.toolgrid{grid-template-columns:repeat(2,1fr)}section{padding:65px 0}h1{font-size:clamp(72px,16vw,115px)}.screensbig{margin-top:25px}}@media(max-width:420px){.screens{grid-template-columns:1fr 1fr}.shot img{height:215px}.toolgrid{grid-template-columns:1fr}.topinner{min-height:64px}.wordmark{font-size:18px}}
+</style></head>
 <body>
-<div class="wrap">
-<nav>
-<div class="brand">DIVINE<span>APPS</span></div>
-<div class="navlinks"><a href="#tools">Tools</a><a href="#roadside">Roadside Strange</a><a href="paranormal-suitcase-privacy.html">Privacy</a></div>
-</nav>
-
-<section class="hero">
-<div>
-<div class="kicker">A field toolkit for paranormal investigators</div>
-<h1>PARANORMAL<br><span class="gradient">SUITCASE</span></h1>
-<p class="lead">Real sensors. Real recordings. Real limitations. Paranormal Suitcase brings the tools of an investigation together in one place without pretending your phone can magically prove the paranormal.</p>
-<div class="buttons"><a class="btn primary" href="#tools">See the toolkit</a><a class="btn secondary" href="#roadside">Meet Roadside Strange</a></div>
-</div>
-<div class="device" aria-label="Stylized Paranormal Suitcase artwork">
-<div class="grid"></div>
-<div class="case"><div class="wave"></div></div>
-<div class="scan">FIELD KIT // SENSOR READY</div>
-<div class="trio">
-<div class="mini"><b>EVP</b>Raw audio</div>
-<div class="mini"><b>EMF</b>Magnetic field</div>
-<div class="mini"><b>JOURNAL</b>Session evidence</div>
-</div>
-</div>
-</section>
-
-<section class="section" id="tools">
-<div class="kicker">Inside the suitcase</div>
-<h2>Built for the field.</h2>
-<p class="intro">Use the phone hardware you already carry to record, observe, compare, and organize an investigation. Every instrument includes an explanation of what it actually measures and what can create false positives.</p>
-<div class="cards">
-<div class="card"><div class="icon">🎙️</div><h3>EVP Recorder</h3><p>Capture untouched microphone audio, mark moments during a session, and review recordings with playback scrubbing.</p></div>
-<div class="card"><div class="icon">📟</div><h3>K2 / EMF</h3><p>Monitor real magnetometer changes against a local baseline with familiar K2-style visual feedback.</p></div>
-<div class="card"><div class="icon">📻</div><h3>Spirit Box</h3><p>Experimental generated static with optional short fragments from live internet-radio streams and source logging.</p></div>
-<div class="card"><div class="icon">🧍</div><h3>SLS Camera</h3><p>Visible-light pose mapping using on-device pose detection. No fake infrared or imaginary depth sensor claims.</p></div>
-<div class="card"><div class="icon">🧭</div><h3>Anomaly Compass</h3><p>Record magnetic-field change by direction during a deliberate 360° sweep for repeatable comparisons.</p></div>
-<div class="card"><div class="icon">📚</div><h3>Investigation Journal</h3><p>Keep recordings, evidence, source logs, and event markers organized by investigation for later review.</p></div>
-</div>
-<div class="truth"><strong>Free to start:</strong> EVP Recorder and K2 / EMF are available without the Premium unlock. Additional investigation tools and workflows are available with Premium.</div>
-</section>
-
-<section class="section" id="roadside">
-<div class="cross">
-<div>
-<div class="kicker">Also from DivineApps</div>
-<div class="logo">ROADSIDE<br><em>STRANGE</em></div>
-</div>
-<div>
-<h2 style="margin-top:0">Take the weird way home.</h2>
-<p class="intro">When the investigation ends, find the next strange place worth visiting. Roadside Strange maps hauntings, cryptids, UAP cases, weird history, and other unusual stories, then helps turn them into real-world stops and road trips.</p>
-<div class="buttons"><a class="btn primary" href="https://roadsidestrange.com">Explore Roadside Strange</a><a class="btn secondary" href="roadside-strange.html">See the app page</a></div>
-</div>
-</div>
-</section>
-
-<footer>
-<div><strong>Paranormal Suitcase</strong> by DivineApps</div>
-<div class="smalllinks"><a href="paranormal-suitcase-privacy.html">Privacy Policy</a><a href="mailto:nathsnswife@gmail.com">Contact</a><a href="roadside-strange.html">Roadside Strange</a></div>
-</footer>
-</div>
-</body>
-</html>
+<nav class="top"><div class="wrap topinner"><a class="wordmark" href="/">RS <b>✦</b> ROADSIDE STRANGE</a><div class="nav"><a href="#inside">THE TOOLS</a><a href="#experience">THE EXPERIENCE</a><a class="get" href="#download">GET THE APP ↗</a></div></div></nav>
+<header class="hero"><div class="wrap herogrid"><div><div class="live">NOW LIVE · iOS + ANDROID</div><div class="eyebrow" style="margin-top:42px">THE HOUSE IS LISTENING</div><h1>PARANORMAL<span>SUITCASE</span></h1><div class="strap">The investigation goes wherever you do.</div><p class="intro">A powerful paranormal investigation toolkit built for the curious, the committed, and everyone who wants to document what happens when things get strange. Real device sensors. Real recordings. Your evidence, all in one place.</p><div class="buttons"><a class="button" href="https://apps.apple.com/app/id6823230351"> &nbsp; DOWNLOAD FOR iPHONE</a><a class="button secondary" href="https://play.google.com/store/apps/details?id=com.divineapps.paranormalsuitcase">▶ &nbsp; GET IT ON GOOGLE PLAY</a></div><div class="micro">FREE TO START &nbsp; / &nbsp; ONE-TIME LIFETIME PREMIUM &nbsp; / &nbsp; NO SUBSCRIPTION</div></div><div class="heroart"><div class="halo"></div><div class="vert">OBSERVE // CAPTURE // INVESTIGATE</div><div class="phone"><img src="assets/home.webp" alt="Paranormal Suitcase app home screen with six investigation tools"></div></div></div></header>
+<div class="ticker">EMF DETECTOR <b>✦</b> EVP RECORDER <b>✦</b> PARANORMAL AUDIO SWEEP <b>✦</b> PROXIMITY FIELD <b>✦</b> SPECTRAL SCAN <b>✦</b> EVIDENCE JOURNAL</div>
+<section id="experience"><div class="wrap"><div class="section-top"><div><div class="eyebrow">NOT JUST ANOTHER GHOST APP</div><h2>TOOLS THAT LOOK<br><strong>AS GOOD AS THEY FEEL.</strong></h2></div><p>Every screen is designed to feel like part of a real investigation. No generic dashboards. No fake miracle promises. Just the instruments, the atmosphere, and the evidence.</p></div><div class="screens">
+<article class="shot"><img src="assets/emf.webp" alt="EMF Detector tool screen" loading="lazy"><div class="num">01 / FIELD</div><h3>EMF DETECTOR</h3><p>Measure magnetic-field changes with your phone’s sensors.</p></article>
+<article class="shot"><img src="assets/evp.webp" alt="EVP Recorder tool screen" loading="lazy"><div class="num">02 / AUDIO</div><h3>EVP RECORDER</h3><p>Record, mark, replay and review investigation audio.</p></article>
+<article class="shot"><img src="assets/proximity.webp" alt="Proximity Field tool screen" loading="lazy"><div class="num">03 / FIELD</div><h3>PROXIMITY FIELD</h3><p>Explore sensor changes with calibration and sensitivity controls.</p></article>
+<article class="shot"><img src="assets/lights.webp" alt="Field Lights tool screen" loading="lazy"><div class="num">04 / UTILITY</div><h3>FIELD LIGHTS</h3><p>Essential illumination, strobe and SOS controls.</p></article>
+</div><div class="featureline"><span>Real sensor data</span><span>Recordings you can review</span><span>Built for field investigations</span></div></div></section>
+<section class="darksection"><div class="wrap split"><div><div class="eyebrow">THE INVESTIGATION IS ONLY THE BEGINNING</div><h2>EVERY MOMENT.<br><strong>EVERY CLUE.</strong><br>ONE PLACE.</h2><p>Capture audio, mark noteworthy events and keep your investigations organized. The Investigation Journal brings your case files, sessions and evidence together so you can return to what matters.</p><p class="statement">The experience is yours. <em>The evidence stays yours.</em></p></div><div class="screensbig"><img src="assets/evp.webp" alt="EVP audio recording interface" loading="lazy"><img src="assets/journal.webp" alt="Investigation case files interface" loading="lazy"></div></div></section>
+<section id="inside"><div class="wrap"><div class="section-top"><div><div class="eyebrow">THE COMPLETE FIELD KIT</div><h2>OPEN THE<br><strong>SUITCASE.</strong></h2></div><p>Start with free tools. Unlock the full kit with one Lifetime Premium purchase. No monthly premium payments.</p></div><div class="toolgrid">
+<div class="tool"><span class="tag">FREE</span><h3>EMF Detector</h3><p>Live magnetic-field readings and baseline changes.</p></div>
+<div class="tool"><span class="tag">FREE</span><h3>EVP Recorder</h3><p>Capture raw audio and mark events.</p></div>
+<div class="tool"><span class="tag">FREE</span><h3>Evidence Camera</h3><p>Photograph and document your location.</p></div>
+<div class="tool"><span class="tag">FREE</span><h3>Field Lights</h3><p>Flashlight, strobe and SOS controls.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Paranormal Audio Sweep</h3><p>Experimental voice-fragment audio sessions.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Proximity Field</h3><p>Environmental sensor-change experiment.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Spectral Scan</h3><p>Experimental camera-based visual overlays.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>EVP Enhance</h3><p>Processed audio copies; originals stay intact.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Geophone</h3><p>Track movement and vibration using device sensors.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Anomaly Compass</h3><p>Monitor directional magnetic variation.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Shadow Scanner</h3><p>Compare calibrated camera imagery over time.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Motion Camera</h3><p>Capture visible changes in a monitored scene.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Sensor Dashboard</h3><p>Available sensor readings in one place.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Sensor Overlay Camera</h3><p>Add device sensor context to camera footage.</p></div>
+<div class="tool"><span class="tag p">PREMIUM</span><h3>Investigation Journal</h3><p>Organized cases, sessions, notes and evidence.</p></div>
+</div></div></section>
+<section class="bottom" id="download"><div class="wrap"><div class="eyebrow">AVAILABLE NOW · IPHONE + ANDROID</div><h2>THE HOUSE<br><span style="color:var(--green)">IS LISTENING.</span></h2><p>Your next investigation begins here.</p><div class="price">LIFETIME PREMIUM · INTRODUCTORY US PRICE $4.99 · ONE-TIME PURCHASE</div><div class="buttons"><a class="button" href="https://apps.apple.com/app/id6823230351"> &nbsp; APP STORE</a><a class="button secondary" href="https://play.google.com/store/apps/details?id=com.divineapps.paranormalsuitcase">▶ &nbsp; GOOGLE PLAY</a></div><p class="micro">Prices and availability vary by store and region. Paranormal activity cannot be guaranteed.</p><div style="margin-top:65px;border-top:1px solid #ffffff25;padding-top:37px"><div class="eyebrow">THE OTHER HALF OF YOUR ADVENTURE</div><h3 style="font-size:34px;margin:15px 0">LOOKING FOR SOMEWHERE STRANGE?</h3><p>Discover hauntings, cryptids, UAP reports and weird history with Roadside Strange — then bring Paranormal Suitcase to investigate.</p><a class="button secondary" href="/">EXPLORE ROADSIDE STRANGE ↗</a></div></div></section>
+<footer class="foot"><div class="wrap footin"><div><div class="wordmark">DIVINE<b>APPS</b></div><p>Independent apps for curious people. Arizona, USA.<br>Experimental tools rely on available phone hardware and environmental conditions.</p></div><div class="footlinks"><a href="/">Roadside Strange</a><a href="/paranormal-suitcase.html">Paranormal Suitcase</a><a href="/support.html">Support</a><a href="/paranormal-suitcase-privacy.html">Privacy</a></div></div></footer>
+</body></html>
