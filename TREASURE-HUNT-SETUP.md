@@ -3,7 +3,7 @@
 **Development only.** This work is in `feature/treasure-hunt-letter-checker`, not the live site.
 
 ## Built so far
-- `treasure-hunt.html`: 16-entry complete-sequence checker with no letter-by-letter correctness feedback.
+- `treasure-hunt.html`: 16-entry complete-sequence checker with a count of incorrect positions, but no individual letter identification.
 - `treasure-hunt-worker.js`: private validation of one 16-letter sequence; **three complete submissions per UTC day per network address**.
 - Durable Object transactional counters prevent parallel requests from evading the quota.
 - Correct solutions persist on the server for that network address.
@@ -23,7 +23,7 @@
 
 ## Limits and fairness
 - Attempts are **per IP address**, not per actual person. Two people on the same Wi-Fi share a limit; someone switching networks can get extra guesses. For real per-player fairness, add sign-in and a stable user ID rather than relying on IPs.
-- The public checker only reports if the **whole sequence** is right or wrong and does not reveal individual letters, the final anagram, or award prizes. A separate final-answer submission and timestamped winner-claim process is still needed.
+- The public checker reports whether the **whole sequence** is correct, or how many positions are incorrect, without identifying individual letters, the final anagram, or award prizes. A separate final-answer submission and timestamped winner-claim process is still needed.
 - The client stores solved letters for convenience. Server-side state determines whether a clue was already solved, but clients can clear their own display.
 - Rate limiting is enforced using Durable Objects, but this has **not yet been integration-tested in Cloudflare**.
 
