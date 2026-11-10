@@ -1,31 +1,30 @@
-# Roadside Strange treasure hunt checker
+# Roadside Strange — secure treasure hunt checker
 
-**Development only.** This work is in `feature/treasure-hunt-letter-checker`, not the live site.
+**Status: implementation staged in a draft pull request; the Cloudflare Worker is NOT DEPLOYED and the hidden website preview is still a browser-only demo.**
 
-## Built so far
-- `treasure-hunt.html`: 16-entry complete-sequence checker with a count of incorrect positions, but no individual letter identification.
-- `treasure-hunt-worker.js`: private validation of one 16-letter sequence; **three complete submissions per UTC day per network address**.
-- Durable Object transactional counters prevent parallel requests from evading the quota.
-- Correct solutions persist on the server for that network address.
-- The browser never receives the real answer key. For local visual testing only, the hidden website preview uses a public dummy answer `COUNTERTERRORISM` and an easily reset browser-based three-try limit. That preview is **not a secure prize checker**.
+## How it works
+- Player signs in with Google through Firebase Authentication. Their verified email account is required for submissions.
+- The browser submits **all 16 letters** plus a Firebase ID token.
+- Cloudflare validates the token signature against Google's public signing keys and checks issuer, project ID, expiration, and email verification before accepting the account UID.
+- The Durable Object counts **three complete sequence attempts per UTC day per verified Firebase UID**, with transactional updates. Moving to another IP/VPN does **not** reset the same account's guesses.
+- A wrong attempt reports **how many letter positions are incorrect**, not which ones. A correct answer is remembered per account.
+- Real ANSWER_LETTERS stays a Worker secret and is never sent to the browser.
+- Local tests: `node --experimental-default-type=module treasure-hunt-test.mjs`. Workflow: `.github/workflows/treasure-hunt-tests.yml`.
 
-## Cloudflare setup (not deployed yet)
-1. From a local checkout of this branch, install Wrangler, then deploy with `npx wrangler deploy --config wrangler.hunt.jsonc`. This config creates the `HUNT_LIMITER` Durable Object with SQLite storage.
-2. Configure `ANSWER_LETTERS` **as a Cloudflare secret**, exactly 16 capital letters in clue order. This must be verified against the final riddles before launch. **Never include it in GitHub, frontend JavaScript, or `vars`.**
-3. Configure a long random `IP_HASH_SECRET` **as another Cloudflare secret**. Example setup commands:
-   `npx wrangler secret put ANSWER_LETTERS --config wrangler.hunt.jsonc`
-   `npx wrangler secret put IP_HASH_SECRET --config wrangler.hunt.jsonc`
-4. Confirm launch time and timezone, then change `OPEN_AT` in `wrangler.hunt.jsonc` if needed (currently example November 15, 2026 at midnight Arizona time).
-5. Confirm allowed website origins in `ALLOWED_ORIGIN`.
-6. Update the empty `API_URL` constant in `treasure-hunt.html` to the deployed Worker URL.
-7. Test a full 16-letter correct and wrong sequence, an incomplete submission (must not consume attempts), three-wrong lockout, simultaneous guesses, across-day reset, and mobile layout. Use a disposable **test answer key** for testing first; never burn live contestants' attempts.
-8. Link the checker from the website only after you're happy with the tests and merge the changes.
+## Activation steps (requires access to user's Firebase and Cloudflare dashboards)
+1. Confirm which Firebase project will own player accounts. In Firebase Authentication, **enable Google sign-in** and add `roadsidestrange.com` to the authorized domains. Use the existing project only with the owner's agreement, since this will share that project's auth user database.
+2. Copy the **public Firebase Web App config** into `treasure-hunt-config.js` (apiKey, authDomain, projectId, appId). The same projectId must be set as `FIREBASE_PROJECT_ID` in `wrangler.hunt.jsonc`. These config values are NOT the answer-key secret.
+3. Create or access a Cloudflare Workers account. Run `npx wrangler login` and `npx wrangler deploy --config wrangler.hunt.jsonc` from a local checkout of this feature branch. The config contains a SQLite-backed Durable Object HUNT_LIMITER.
+4. Set the real 16-letter clue-order key privately: `npx wrangler secret put ANSWER_LETTERS --config wrangler.hunt.jsonc`. **Verify this exact key first against the final clues**, not against the unscrambled final word.
+5. Set `HUNT_CONFIG.apiUrl` in `treasure-hunt-config.js` to the deployed Worker base URL, leaving off `/check`. Ensure `ALLOWED_ORIGIN` matches the domain serving the page.
+6. Confirm the contest opening time; `OPEN_AT` currently defaults to **2026-11-15 at midnight Arizona time**. For private prelaunch tests use a separate Worker name/environment and dummy answer, rather than activating the live checker early.
+7. Verify that Google sign-in works on desktop and phone; incomplete input uses no attempt; a wrong sequence returns a position count; 3 bad guesses lock out the account; other signed-in account has its own counter; VPN switching doesn't reset a signed-in account; successful completion persists.
+8. Bring the approved visual styling from the hidden test page into the production checker, add a public link when ready, and merge only after testing.
 
-## Limits and fairness
-- Attempts are **per IP address**, not per actual person. Two people on the same Wi-Fi share a limit; someone switching networks can get extra guesses. For real per-player fairness, add sign-in and a stable user ID rather than relying on IPs.
-- The public checker reports whether the **whole sequence** is correct, or how many positions are incorrect, without identifying individual letters, the final anagram, or award prizes. A separate final-answer submission and timestamped winner-claim process is still needed.
-- The client stores solved letters for convenience. Server-side state determines whether a clue was already solved, but clients can clear their own display.
-- Rate limiting is enforced using Durable Objects, but this has **not yet been integration-tested in Cloudflare**.
+## Hidden visual demo
+The current hidden site `/monster-bash-moonlit-crypt-7f42/` uses the **dummy test string** `COUNTERTERRORISM` and an easily reset browser-only limit. It remains untouched by this backend work and is not suitable for prize enforcement.
 
-## No live-site changes yet
-The production website remains untouched; the draft pull request is intentionally unmerged.
+## Limitations and fairness
+- A player can still create additional Google/Firebase accounts to bypass an account-only daily quota. For a cash-prize event, consider a one-registration-per-person rule, organizer verification before awarding, monitoring for suspicious submissions, and/or an extra challenge mechanism. Verified email is not proof of a unique human.
+- Cloudflare deployment requires account access and may have usage charges. No Cloudflare account, Worker, Firebase config, or live secret has been provisioned in this session.
+- This checker alone does NOT log a unique timestamped final-word prize claim. Build a separate verified winner submission and audit trail before launch.
