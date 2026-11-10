@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0910"><title>Treasure Hunt Letter Checker | Roadside Strange</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0910;--panel:#19131e;--border:#514257;--ink:#f5eee4;--muted:#c0b3bb;--purple:#c884ff;--green:#6dec9d;--red:#ff9eaa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#321445,transparent 44%),radial-gradient(circle at 90% 10%,#123329,transparent 38%),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+main{max-width:930px;margin:auto;padding:32px 20px 75px}a{color:var(--green)}.brand{font-weight:900;letter-spacing:.13em;text-decoration:none;color:var(--ink);font-size:.87rem}.brand span{color:var(--green)}.eyebrow{color:var(--green);font-weight:900;letter-spacing:.15em;text-transform:uppercase;font-size:.8rem;margin-top:65px}h1{font-size:clamp(2.4rem,8vw,5rem);letter-spacing:-.055em;line-height:1;margin:12px 0 20px}h1 span{color:var(--purple)}p{line-height:1.6;color:var(--muted)}.panel{background:#17121bbf;border:1px solid var(--border);padding:24px;border-radius:18px;margin-top:26px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:23px}.tile{background:#211a28;border:1px solid #534258;border-radius:12px;padding:12px;min-width:0}.tile label{display:block;font-size:.79rem;font-weight:800;color:#ded1df;margin-bottom:9px}.tile input{width:100%;height:49px;border:1px solid #655575;background:#0e0b12;border-radius:8px;text-align:center;font-size:1.6rem;font-weight:900;text-transform:uppercase;color:white;outline-offset:3px}.tile input:focus{outline:2px solid var(--purple)}.tile .status{min-height:34px;font-size:.73rem;line-height:1.4;margin-top:8px;color:var(--muted)}.tile.correct{border-color:var(--green)}.tile.correct .status{color:var(--green)}.tile.wrong{border-color:var(--red)}.tile.wrong .status{color:var(--red)}.tile.locked{opacity:.8}.actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}button{border:0;background:var(--green);color:#09120e;font-size:1rem;font-weight:900;padding:14px 23px;border-radius:10px;cursor:pointer}button:disabled{opacity:.55;cursor:wait}#message{font-weight:700;min-height:24px}.notes{font-size:.9rem}footer{margin-top:45px;color:#ad9eaa;font-size:.85rem}@media(max-width:630px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:16px}.eyebrow{margin-top:42px}}
+</style></head><body><main>
+<a class="brand" href="roadside-strange.html">ROADSIDE <span>STRANGE</span></a>
+<div class="eyebrow">The 16-location treasure hunt</div><h1>DECODE THE <span>STRANGE.</span></h1>
+<p>Enter all 16 discovered letters in clue order, then check the <strong>entire sequence</strong>. You'll learn how many letter positions are incorrect, but not which ones. You have <strong>three complete guesses per UTC day</strong>.</p>
+<section class="panel" aria-labelledby="account-title"><h2 id="account-title">Player account</h2><p id="account-status" class="notes">Checking sign-in…</p><div class="actions"><button id="sign-in" type="button">Sign in with Google</button><button id="sign-out" type="button" hidden>Sign out</button></div></section><section class="panel" aria-labelledby="checker-title"><h2 id="checker-title">Your discovered letters</h2>
+<p class="notes">Every box must contain a letter before a check can be submitted. You can edit them freely before submitting.</p>
+<form id="checker" autocomplete="off"><div id="letters" class="grid"></div><div class="actions"><button id="submit" type="submit">Check my letters</button><div id="message" role="status" aria-live="polite"></div></div></form>
+</section><p class="notes">The competition checker counts guesses against your verified player account. Creating additional accounts is still possible, so contest safeguards are also needed.</p>
+<footer>Roadside Strange · Take the weird way home.</footer></main>
+<script type="module">
+import { HUNT_CONFIG } from './treasure-hunt-config.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js';
+
+const grid=document.getElementById('letters');
+const form=document.getElementById('checker');
+const button=document.getElementById('submit');
+const message=document.getElementById('message');
+const accountStatus=document.getElementById('account-status');
+const signInButton=document.getElementById('sign-in');
+const signOutButton=document.getElementById('sign-out');
+const ready=!!(HUNT_CONFIG.apiUrl && HUNT_CONFIG.firebase.apiKey &&
+ HUNT_CONFIG.firebase.authDomain && HUNT_CONFIG.firebase.projectId && HUNT_CONFIG.firebase.appId);
+let auth=null;
+let player=null;
+let solved=false;
+const cells=[];
+for(let n=1;n<=16;n++){
+  const tile=document.createElement('div');tile.className='tile';
+  const label=document.createElement('label');label.htmlFor='clue-'+n;label.textContent='Letter '+String(n).padStart(2,'0');
+  const input=document.createElement('input');input.id=label.htmlFor;input.maxLength=1;input.inputMode='text';
+  input.setAttribute('aria-label','Letter '+n+' of 16');
+  input.addEventListener('input',()=>{
+    input.value=input.value.replace(/[^a-z]/gi,'').toUpperCase().slice(0,1);
+    if(input.value&&n<16)cells[n].input.focus();
+  });
+  tile.append(label,input);grid.append(tile);cells.push({tile,input});
+}
+button.disabled=true;
+signInButton.disabled=true;
+if(!ready){
+  accountStatus.textContent='The private checker is not yet configured. No guesses can be used.';
+  message.textContent='Waiting for secure checker setup.';
+}else{
+  auth=getAuth(initializeApp(HUNT_CONFIG.firebase));
+  signInButton.disabled=false;
+  onAuthStateChanged(auth,user=>{
+    player=user;
+    const verified=!!(user && user.emailVerified);
+    accountStatus.textContent=!user?'Sign in to check your letters.':
+      verified?'Signed in as '+(user.email||'verified player')+'.':
+      'Please verify your email address before checking.';
+    signInButton.hidden=!!user;
+    signOutButton.hidden=!user;
+    button.disabled=!verified||solved;
+  },()=>{accountStatus.textContent='Sign-in is temporarily unavailable.';button.disabled=true});
+}
+signInButton.addEventListener('click',async()=>{
+  if(!auth)return;
+  try{
+    await signInWithPopup(auth,new GoogleAuthProvider());
+  }catch(err){accountStatus.textContent='Sign-in failed: '+(err.code||'please try again')}
+});
+signOutButton.addEventListener('click',async()=>{
+  if(auth)await signOut(auth);
+  solved=false;
+  cells.forEach(c=>{c.input.readOnly=false;c.tile.classList.remove('correct')});
+});
+form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const letters=cells.map(c=>c.input.value).join('');
+  if(letters.length!==16){message.textContent='Fill all 16 letters first. No attempt used.';return}
+  if(!ready||!player||!player.emailVerified){message.textContent='Sign in with a verified account first.';return}
+  button.disabled=true;message.textContent='Checking complete sequence…';
+  try{
+    const token=await player.getIdToken();
+    const response=await fetch(HUNT_CONFIG.apiUrl.replace(/\/$/,'')+'/check',{
+      method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body:JSON.stringify({letters})
+    });
+    const data=await response.json();
+    if(!response.ok)throw Error(data.error||'Checker unavailable');
+    if(data.status==='correct'){
+      solved=true;message.textContent='✓ Correct! You solved all 16 clues.';
+      button.textContent='Sequence solved';
+      cells.forEach(c=>{c.input.readOnly=true;c.tile.classList.add('correct')});
+    }else if(data.status==='limit'){
+      message.textContent='Daily limit reached. Come back after 00:00 UTC.';
+      button.textContent='Daily limit reached';
+    }else if(data.status==='wrong'){
+      message.textContent=data.incorrect+' of 16 letters '+(data.incorrect===1?'is':'are')+' incorrect. '+data.remaining+' full guesses left today.';
+      if(data.remaining>0)button.disabled=false;
+      else button.textContent='Daily limit reached';
+    }else throw Error('Unexpected checker response');
+  }catch(error){
+    message.textContent=error.message||'Could not connect';
+    button.disabled=false;
+  }
+});
+</script></body></html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head><base target="_top"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{color-scheme:dark;--ink:#f5f0e7;--violet:#c484fc;--green:#77e6b1;--gold:#e6ba74}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#38204c,transparent 65%),#08070b;color:var(--ink);font-family:system-ui,sans-serif;padding:22px}
+main{max-width:660px;margin:34px auto}.brand{font-size:.8rem;letter-spacing:.19em;font-weight:900}.brand span{color:var(--green)}
+.card{background:linear-gradient(145deg,#21152d,#0f1118);border:1px solid #6b4d80;border-radius:20px;padding:34px;box-shadow:0 26px 75px #0008}
+.rune{text-align:center;font-size:22px;color:var(--gold);letter-spacing:.4em}
+h1{font-family:Georgia,serif;text-align:center;font-size:clamp(1.8rem,5vw,2.5rem);margin:12px 0;color:#e1bbff}
+p{color:#c9bed0;line-height:1.6;text-align:center}.field{display:grid;gap:8px;margin:17px 0;color:#e0cfe8;font-size:.85rem;font-weight:800}
+input{font:inherit;min-height:49px;padding:12px 14px;color:white;background:#100e17;border:1px solid #745b84;border-radius:9px}
+input:focus{outline:2px solid var(--violet);outline-offset:2px}
+.check{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:#cbbbd3;line-height:1.5;margin:19px 0}.check input{min-height:0;margin-top:2px}
+button{width:100%;border:1px solid #d5a0fd;border-radius:9px;padding:16px 20px;font-weight:900;background:linear-gradient(135deg,#d4a1ff,#9556ce);color:#170b20;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+#feedback{min-height:22px;color:#b2f2d0;text-align:center;margin-top:15px;font-weight:700;white-space:pre-wrap}
+.micro{font-size:.8rem;margin-top:16px}.trap{position:absolute;left:-9999px;top:-9999px}
+@media(max-width:530px){body{padding:12px}.card{padding:23px}}
+</style></head><body>
+<main><div class="brand">ROADSIDE <span>STRANGE</span></div>
+<section class="card"><div class="rune">✦ ◇ ✦</div>
+<h1>Claim Your Discovery</h1>
+<p>Have you untangled all sixteen riddles? Enter the final word and your contact details below. Your entry will be emailed to the contest organizer.</p>
+<form id="entry">
+<label class="field">Full name<input name="name" autocomplete="name" maxlength="100" required></label>
+<label class="field">Email address<input name="email" type="email" autocomplete="email" maxlength="200" required></label>
+<label class="field">The final hidden word<input name="answer" maxlength="40" autocapitalize="characters" spellcheck="false" required></label>
+<div class="trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<label class="check"><input name="consent" type="checkbox" required> I agree that Roadside Strange may use my name and email to administer this contest and contact me about my entry.</label>
+<button id="send" type="submit">✦ &nbsp; Submit Final Answer</button>
+<div id="feedback" role="status" aria-live="polite"></div>
+</form>
+<p class="micro">One answer per submission. No answer validation is performed here. Emails are stored in the organizer's inbox, not a separate entry database.</p>
+</section></main>
+<script>
+(()=>{
+const form=document.getElementById('entry'),button=document.getElementById('send'),feedback=document.getElementById('feedback');
+let startedAt=Date.now();
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ if(button.disabled)return;
+ const d=new FormData(form);
+ const data={name:d.get('name'),email:d.get('email'),answer:d.get('answer'),
+    website:d.get('website'),consent:d.get('consent')==='on',startedAt};
+ button.disabled=true;feedback.textContent='Sending your entry…';
+ google.script.run.withSuccessHandler(result=>{
+  if(result && result.ok){
+   feedback.textContent=(result.testMode?'TEST ONLY — ':'')+'Entry received. Reference: '+result.id.slice(0,8)+'.';
+   form.reset();startedAt=Date.now();
+  }else feedback.textContent='Submission not confirmed. Please try again.';
+  button.disabled=false;
+ }).withFailureHandler(error=>{
+  feedback.textContent=(error&&error.message)||'Unable to send your entry. Please try again.';
+  button.disabled=false;
+ }).submitEntry(data);
+});
+})();
+</script></body></html>
