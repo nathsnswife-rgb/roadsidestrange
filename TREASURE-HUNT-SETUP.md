@@ -1,24 +1,31 @@
-# Roadside Strange treasure hunt letter checker
+# Roadside Strange treasure hunt checker
 
-This is a **staged feature branch**. It is **not live** on roadsidestrange.com.
+**Development only.** This work is in `feature/treasure-hunt-letter-checker`, not the live site.
 
-## What it does
-- `treasure-hunt.html`: 16 letter fields, individual feedback and local persistence of verified guesses.
-- `treasure-hunt-worker.js`: private answer validation, three incorrect-or-correct submissions per clue per **UTC day**, and a launch gate.
-- The public page never contains the answer key. Only filled clues are sent.
-- Wrong guesses identify the clue number and remaining attempts, not the answer.
+## Built so far
+- `treasure-hunt.html`: responsive 16-letter form; marks correct/incorrect clues, saves correct guesses in local browser storage.
+- `treasure-hunt-worker.js`: private server-side answer validation, only attempts filled clues, and a launch-date gate.
+- **Three checked guesses per clue, per UTC day, per network address**. A Cloudflare Durable Object uses transactional storage, preventing simultaneous requests from racing the counter.
+- Previously solved clues stay solved on the server and don't cost new attempts.
+- The browser never receives the answer key.
 
-## Before launch
-1. Create a Cloudflare Worker using `treasure-hunt-worker.js`; bind a Cloudflare KV namespace named `ATTEMPTS`.
-2. Add **secret** `ANSWER_LETTERS` = precisely 16 A–Z characters, **in clue order** (not necessarily the unscrambled final word). Do not commit or paste the answer key in HTML or GitHub.
-3. Add **secret** `IP_HASH_SECRET` = a long randomly generated string.
-4. Set `ALLOWED_ORIGIN` = `https://roadsidestrange.com` (include `https://www.roadsidestrange.com` if needed).
-5. Set `OPEN_AT` = launch timestamp in ISO 8601, e.g. `2026-11-15T00:00:00-07:00`. This is an example; confirm actual launch time.
-6. Change the empty `API_URL` constant in `treasure-hunt.html` to the deployed Worker URL.
-7. Test with a private 16-letter test key before switching to actual answers, including wrong guesses, three-attempt lockout, next-day reset, and mobile display.
-8. Add a link to `treasure-hunt.html` from the intended public landing page, then merge the branch only when you're ready to publish.
+## Cloudflare setup (not deployed yet)
+1. From a local checkout of this branch, install Wrangler, then deploy with `npx wrangler deploy --config wrangler.hunt.jsonc`. This config creates the `HUNT_LIMITER` Durable Object with SQLite storage.
+2. Configure `ANSWER_LETTERS` **as a Cloudflare secret**, exactly 16 capital letters in clue order. This must be verified against the final riddles before launch. **Never include it in GitHub, frontend JavaScript, or `vars`.**
+3. Configure a long random `IP_HASH_SECRET` **as another Cloudflare secret**. Example setup commands:
+   `npx wrangler secret put ANSWER_LETTERS --config wrangler.hunt.jsonc`
+   `npx wrangler secret put IP_HASH_SECRET --config wrangler.hunt.jsonc`
+4. Confirm launch time and timezone, then change `OPEN_AT` in `wrangler.hunt.jsonc` if needed (currently example November 15, 2026 at midnight Arizona time).
+5. Confirm allowed website origins in `ALLOWED_ORIGIN`.
+6. Update the empty `API_URL` constant in `treasure-hunt.html` to the deployed Worker URL.
+7. Test correct, incorrect, repeated, three-wrong lockout, simultaneous guesses, across-day reset, and mobile layout. Use a disposable **test answer key** for testing first; never burn live contestants' attempts.
+8. Link the checker from the website only after you're happy with the tests and merge the changes.
 
-## Important limitations
-Cloudflare KV has eventual consistency and read-modify-write updates are not atomic. Concurrent submissions can slip past the three-attempt cap. For a **strict** prize-contest limit, replace the KV counter with a Durable Object or transactional database before launch. Limits are IP-based; players sharing an internet connection may share attempts, and changing networks can bypass the cap. A user-authenticated identity and atomic server counter would be required for a meaningful per-person enforced cap.
+## Limits and fairness
+- Attempts are **per IP address**, not per actual person. Two people on the same Wi-Fi share a limit; someone switching networks can get extra guesses. For real per-player fairness, add sign-in and a stable user ID rather than relying on IPs.
+- The public checker gives letter-level feedback and does not reveal the final anagram or award prizes. A separate final-answer submission and timestamped winner-claim process is still needed.
+- The client stores solved letters for convenience. Server-side state determines whether a clue was already solved, but clients can clear their own display.
+- Rate limiting is enforced using Durable Objects, but this has **not yet been integration-tested in Cloudflare**.
 
-The private answer key has not been provided to this implementation. It deliberately fails closed and refuses to count attempts until configured. This is a **letter checker**, not a final prize submission or winner-claim endpoint.
+## No live-site changes yet
+The production website remains untouched; the draft pull request is intentionally unmerged.
