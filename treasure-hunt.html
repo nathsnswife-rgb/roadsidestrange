@@ -9,39 +9,99 @@ main{max-width:930px;margin:auto;padding:32px 20px 75px}a{color:var(--green)}.br
 <a class="brand" href="roadside-strange.html">ROADSIDE <span>STRANGE</span></a>
 <div class="eyebrow">The 16-location treasure hunt</div><h1>DECODE THE <span>STRANGE.</span></h1>
 <p>Enter all 16 discovered letters in clue order, then check the <strong>entire sequence</strong>. You'll learn how many letter positions are incorrect, but not which ones. You have <strong>three complete guesses per UTC day</strong>.</p>
-<section class="panel" aria-labelledby="checker-title"><h2 id="checker-title">Your discovered letters</h2>
+<section class="panel" aria-labelledby="account-title"><h2 id="account-title">Player account</h2><p id="account-status" class="notes">Checking sign-in…</p><div class="actions"><button id="sign-in" type="button">Sign in with Google</button><button id="sign-out" type="button" hidden>Sign out</button></div></section><section class="panel" aria-labelledby="checker-title"><h2 id="checker-title">Your discovered letters</h2>
 <p class="notes">Every box must contain a letter before a check can be submitted. You can edit them freely before submitting.</p>
 <form id="checker" autocomplete="off"><div id="letters" class="grid"></div><div class="actions"><button id="submit" type="submit">Check my letters</button><div id="message" role="status" aria-live="polite"></div></div></form>
-</section><p class="notes">The real checker uses a server-side attempt limit. Changing networks may still bypass an IP-based quota; account sign-in is recommended before the competition.</p>
+</section><p class="notes">The competition checker counts guesses against your verified player account. Creating additional accounts is still possible, so contest safeguards are also needed.</p>
 <footer>Roadside Strange · Take the weird way home.</footer></main>
-<script>
-(()=>{'use strict';
-const API_URL=''; // Set to the deployed Cloudflare Worker URL before publishing.
-const grid=document.getElementById('letters'),form=document.getElementById('checker');
-const button=document.getElementById('submit'),message=document.getElementById('message');
+<script type="module">
+import { HUNT_CONFIG } from './treasure-hunt-config.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js';
+
+const grid=document.getElementById('letters');
+const form=document.getElementById('checker');
+const button=document.getElementById('submit');
+const message=document.getElementById('message');
+const accountStatus=document.getElementById('account-status');
+const signInButton=document.getElementById('sign-in');
+const signOutButton=document.getElementById('sign-out');
+const ready=!!(HUNT_CONFIG.apiUrl && HUNT_CONFIG.firebase.apiKey &&
+ HUNT_CONFIG.firebase.authDomain && HUNT_CONFIG.firebase.projectId && HUNT_CONFIG.firebase.appId);
+let auth=null;
+let player=null;
+let solved=false;
 const cells=[];
 for(let n=1;n<=16;n++){
- const tile=document.createElement('div');tile.className='tile';
- const label=document.createElement('label');label.htmlFor='clue-'+n;label.textContent='Letter '+String(n).padStart(2,'0');
- const input=document.createElement('input');input.id=label.htmlFor;input.maxLength=1;input.inputMode='text';input.setAttribute('aria-label','Letter '+n+' of 16');
- input.addEventListener('input',()=>{input.value=input.value.replace(/[^a-z]/gi,'').toUpperCase().slice(0,1);if(input.value&&n<16)cells[n].input.focus()});
- tile.append(label,input);grid.append(tile);cells.push({tile,input});
+  const tile=document.createElement('div');tile.className='tile';
+  const label=document.createElement('label');label.htmlFor='clue-'+n;label.textContent='Letter '+String(n).padStart(2,'0');
+  const input=document.createElement('input');input.id=label.htmlFor;input.maxLength=1;input.inputMode='text';
+  input.setAttribute('aria-label','Letter '+n+' of 16');
+  input.addEventListener('input',()=>{
+    input.value=input.value.replace(/[^a-z]/gi,'').toUpperCase().slice(0,1);
+    if(input.value&&n<16)cells[n].input.focus();
+  });
+  tile.append(label,input);grid.append(tile);cells.push({tile,input});
 }
-form.addEventListener('submit',async event=>{
- event.preventDefault();
- const letters=cells.map(c=>c.input.value).join('');
- if(letters.length!==16){message.textContent='Fill all 16 letters first. No attempt used.';return}
- if(!API_URL){message.textContent='Checker not activated. No attempts used.';return}
- button.disabled=true;message.textContent='Checking complete sequence…';
- try{
-  const response=await fetch(API_URL.replace(/\/$/,'')+'/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({letters})});
-  const data=await response.json();
-  if(!response.ok)throw Error(data.error||'Checker unavailable');
-  if(data.status==='correct'){message.textContent='✓ Correct! You solved all 16 clues.';button.textContent='Sequence solved';cells.forEach(c=>{c.input.readOnly=true;c.tile.classList.add('correct')})}
-  else if(data.status==='limit'){message.textContent='Daily limit reached. Come back after 00:00 UTC.';button.textContent='Daily limit reached'}
-  else if(data.status==='wrong'){message.textContent=data.incorrect+' of 16 letters '+(data.incorrect===1?'is':'are')+' incorrect. '+data.remaining+' full guesses left today.';button.disabled=data.remaining===0;if(!data.remaining)button.textContent='Daily limit reached'}
-  else throw Error('Unexpected checker response');
- }catch(error){message.textContent=error.message||'Could not connect';button.disabled=false}
+button.disabled=true;
+signInButton.disabled=true;
+if(!ready){
+  accountStatus.textContent='The private checker is not yet configured. No guesses can be used.';
+  message.textContent='Waiting for secure checker setup.';
+}else{
+  auth=getAuth(initializeApp(HUNT_CONFIG.firebase));
+  signInButton.disabled=false;
+  onAuthStateChanged(auth,user=>{
+    player=user;
+    const verified=!!(user && user.emailVerified);
+    accountStatus.textContent=!user?'Sign in to check your letters.':
+      verified?'Signed in as '+(user.email||'verified player')+'.':
+      'Please verify your email address before checking.';
+    signInButton.hidden=!!user;
+    signOutButton.hidden=!user;
+    button.disabled=!verified||solved;
+  },()=>{accountStatus.textContent='Sign-in is temporarily unavailable.';button.disabled=true});
+}
+signInButton.addEventListener('click',async()=>{
+  if(!auth)return;
+  try{
+    await signInWithPopup(auth,new GoogleAuthProvider());
+  }catch(err){accountStatus.textContent='Sign-in failed: '+(err.code||'please try again')}
 });
-})();
+signOutButton.addEventListener('click',async()=>{
+  if(auth)await signOut(auth);
+  solved=false;
+  cells.forEach(c=>{c.input.readOnly=false;c.tile.classList.remove('correct')});
+});
+form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const letters=cells.map(c=>c.input.value).join('');
+  if(letters.length!==16){message.textContent='Fill all 16 letters first. No attempt used.';return}
+  if(!ready||!player||!player.emailVerified){message.textContent='Sign in with a verified account first.';return}
+  button.disabled=true;message.textContent='Checking complete sequence…';
+  try{
+    const token=await player.getIdToken();
+    const response=await fetch(HUNT_CONFIG.apiUrl.replace(/\/$/,'')+'/check',{
+      method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body:JSON.stringify({letters})
+    });
+    const data=await response.json();
+    if(!response.ok)throw Error(data.error||'Checker unavailable');
+    if(data.status==='correct'){
+      solved=true;message.textContent='✓ Correct! You solved all 16 clues.';
+      button.textContent='Sequence solved';
+      cells.forEach(c=>{c.input.readOnly=true;c.tile.classList.add('correct')});
+    }else if(data.status==='limit'){
+      message.textContent='Daily limit reached. Come back after 00:00 UTC.';
+      button.textContent='Daily limit reached';
+    }else if(data.status==='wrong'){
+      message.textContent=data.incorrect+' of 16 letters '+(data.incorrect===1?'is':'are')+' incorrect. '+data.remaining+' full guesses left today.';
+      if(data.remaining>0)button.disabled=false;
+      else button.textContent='Daily limit reached';
+    }else throw Error('Unexpected checker response');
+  }catch(error){
+    message.textContent=error.message||'Could not connect';
+    button.disabled=false;
+  }
+});
 </script></body></html>
