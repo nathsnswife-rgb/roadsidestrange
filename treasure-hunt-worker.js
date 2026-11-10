@@ -47,8 +47,9 @@ export class HuntLimiter{
    if(used>=3)return {status:'limit',remaining:0};
    const remaining=2-used;
    await tx.put(key,used+1);
-   if(letters===answer){await tx.put('solved',true);return {status:'correct',remaining}}
-   return {status:'wrong',remaining};
+   if(letters===answer){await tx.put('solved',true);return {status:'correct',remaining,incorrect:0}}
+   const incorrect=[...answer].reduce((count,letter,index)=>count+(letters[index]===letter?0:1),0);
+   return {status:'wrong',remaining,incorrect};
   });
  }
 }
