@@ -8,7 +8,7 @@ main{max-width:930px;margin:auto;padding:32px 20px 75px}a{color:var(--green)}.br
 </style></head><body><main>
 <a class="brand" href="roadside-strange.html">ROADSIDE <span>STRANGE</span></a>
 <div class="eyebrow">The 16-location treasure hunt</div><h1>DECODE THE <span>STRANGE.</span></h1>
-<p>Enter all 16 discovered letters in clue order, then check the <strong>entire sequence</strong>. The checker will not reveal which individual letters are right or wrong. You have <strong>three complete guesses per UTC day</strong>.</p>
+<p>Enter all 16 discovered letters in clue order, then check the <strong>entire sequence</strong>. You'll learn how many letter positions are incorrect, but not which ones. You have <strong>three complete guesses per UTC day</strong>.</p>
 <section class="panel" aria-labelledby="checker-title"><h2 id="checker-title">Your discovered letters</h2>
 <p class="notes">Every box must contain a letter before a check can be submitted. You can edit them freely before submitting.</p>
 <form id="checker" autocomplete="off"><div id="letters" class="grid"></div><div class="actions"><button id="submit" type="submit">Check my letters</button><div id="message" role="status" aria-live="polite"></div></div></form>
@@ -39,7 +39,7 @@ form.addEventListener('submit',async event=>{
   if(!response.ok)throw Error(data.error||'Checker unavailable');
   if(data.status==='correct'){message.textContent='✓ Correct! You solved all 16 clues.';button.textContent='Sequence solved';cells.forEach(c=>{c.input.readOnly=true;c.tile.classList.add('correct')})}
   else if(data.status==='limit'){message.textContent='Daily limit reached. Come back after 00:00 UTC.';button.textContent='Daily limit reached'}
-  else if(data.status==='wrong'){message.textContent='Not quite. No letter hints. '+data.remaining+' full guesses left today.';button.disabled=false}
+  else if(data.status==='wrong'){message.textContent=data.incorrect+' of 16 letters '+(data.incorrect===1?'is':'are')+' incorrect. '+data.remaining+' full guesses left today.';button.disabled=data.remaining===0;if(!data.remaining)button.textContent='Daily limit reached'}
   else throw Error('Unexpected checker response');
  }catch(error){message.textContent=error.message||'Could not connect';button.disabled=false}
 });
