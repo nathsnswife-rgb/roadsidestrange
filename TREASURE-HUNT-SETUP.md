@@ -9,7 +9,7 @@
 - The Durable Object counts **three complete sequence attempts per UTC day per verified Firebase UID**, with transactional updates. Moving to another IP/VPN does **not** reset the same account's guesses.
 - A wrong attempt reports **how many letter positions are incorrect**, not which ones. A correct answer is remembered per account.
 - Real ANSWER_LETTERS stays a Worker secret and is never sent to the browser.
-- Local tests: `node --experimental-default-type=module treasure-hunt-test.mjs`. Workflow: `.github/workflows/treasure-hunt-tests.yml`.
+- Local tests: `node treasure-hunt-test.mjs`. Workflow: `.github/workflows/treasure-hunt-tests.yml`.
 
 ## Activation steps (requires access to user's Firebase and Cloudflare dashboards)
 1. Confirm which Firebase project will own player accounts. In Firebase Authentication, **enable Google sign-in** and add `roadsidestrange.com` to the authorized domains. Use the existing project only with the owner's agreement, since this will share that project's auth user database.
