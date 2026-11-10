@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "roadside-strange-hunt-checker",
+  "main": "treasure-hunt-worker.js",
+  "compatibility_date": "2026-11-09",
+  "vars": {
+    "ALLOWED_ORIGIN": "https://roadsidestrange.com,https://www.roadsidestrange.com",
+    "OPEN_AT": "2026-11-15T00:00:00-07:00"
+  },
+  "durable_objects": {
+    "bindings": [
+      { "name": "HUNT_LIMITER", "class_name": "HuntLimiter" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["HuntLimiter"] }
+  ]
+}
